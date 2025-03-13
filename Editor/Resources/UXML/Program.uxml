@@ -1,0 +1,12 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="True">
+    <ui:VisualElement name="container" style="flex-grow: 1; flex-shrink: 1;">
+        <uie:ObjectField label="Program" name="programObject" type="Preliy.Flange.Planner.Program, Preliy.Flange.Planner" />
+        <ui:VisualElement name="empty" style="flex-grow: 1;">
+            <ui:Label tabindex="-1" text="Empty" parse-escape-sequences="true" display-tooltip-when-elided="true" style="flex-shrink: 1; flex-grow: 1; -unity-text-align: middle-center;" />
+        </ui:VisualElement>
+        <ui:VisualElement name="content" style="flex-grow: 1; flex-shrink: 1;" />
+    </ui:VisualElement>
+    <ui:VisualElement name="actions" style="flex-grow: 0; flex-shrink: 0;">
+        <ui:Button text="Add PTP" parse-escape-sequences="true" display-tooltip-when-elided="true" name="addPTP" />
+    </ui:VisualElement>
+</ui:UXML>

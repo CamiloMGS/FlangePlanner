@@ -1,0 +1,13 @@
+using System.Collections.Generic;
+using Cysharp.Threading.Tasks;
+using Preliy.Robotics;
+using Preliy.Robotics.Instructions;
+using UnityEngine;
+
+public class #SCRIPTNAME# : Task
+{    
+    protected override void Program()
+    {
+        
+    }
+}

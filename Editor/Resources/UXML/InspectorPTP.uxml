@@ -1,0 +1,24 @@
+<engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="True">
+    <engine:VisualElement name="stateContainer">
+        <engine:EnumField label="State" value="Center" type="Preliy.Flange.Planner.Instructions.InstructionState, Preliy.Flange.Planner" name="state" binding-path="_jointMotion._state" enabled="true" picking-mode="Ignore" />
+    </engine:VisualElement>
+    <engine:VisualElement name="propertiesContainer" style="flex-grow: 1;">
+        <engine:VisualElement name="cartesianTargetContainer">
+            <editor:ObjectField label="Target Reference" name="sceneCartesianTarget" type="Preliy.Flange.Planner.SceneCartesianTarget, Preliy.Flange.Planner" binding-path="_sceneCartesianTarget" />
+            <editor:PropertyField name="configuration" label="Configuration" binding-path="_cartesianTarget._configuration" />
+            <editor:PropertyField name="extJoints" label="Ext.Joints" binding-path="_cartesianTarget._extJoint" />
+            <engine:IntegerField label="Frame" name="frame" binding-path="_frame" />
+            <engine:IntegerField label="Tool" name="tool" binding-path="_tool" />
+        </engine:VisualElement>
+        <engine:FloatField label="Speed" name="speed" binding-path="_speed" />
+        <engine:FloatField label="Blending" name="blending" binding-path="_blending" />
+    </engine:VisualElement>
+    <engine:VisualElement name="gizmosContainer" style="flex-grow: 1;">
+        <editor:PropertyField binding-path="_showGizmos" />
+        <editor:PropertyField binding-path="_showLabel" />
+        <editor:PropertyField binding-path="_gizmosScale" />
+    </engine:VisualElement>
+    <engine:VisualElement name="actionsContainer" style="flex-grow: 1;">
+        <engine:Button text="Jump" name="jump" />
+    </engine:VisualElement>
+</engine:UXML>

@@ -1,0 +1,17 @@
+{
+    "name": "Preliy.Flange.Planner",
+    "rootNamespace": "Preliy.Flange.Planner",
+    "references": [
+        "GUID:9d65667f77399154faa5865980010a4a",
+        "GUID:f51ebe6a0ceec4240a699833d6309b23"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
