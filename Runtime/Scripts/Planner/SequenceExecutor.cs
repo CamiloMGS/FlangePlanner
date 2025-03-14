@@ -7,7 +7,7 @@ using System.Threading;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 
-namespace Preliy.Flange.Planner.Instructions
+namespace Preliy.Flange.Planner.RawInstructions
 {
     [RequireComponent(typeof(Controller))]
     public class SequenceExecutor : MonoBehaviour
@@ -17,7 +17,7 @@ namespace Preliy.Flange.Planner.Instructions
         [SerializeField]
         private Property<ExecutionState> _state = new (ExecutionState.Idle);
         [SerializeField]
-        private Property<Sequence> _sequence = new (null);
+        private Property<Program> _sequence = new (null);
         [SerializeField]
         private Property<bool> _autoStart = new (false);
         [SerializeField]

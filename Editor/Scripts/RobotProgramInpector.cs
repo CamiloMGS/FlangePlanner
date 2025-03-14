@@ -4,22 +4,22 @@
 
 using System.Threading;
 using Cysharp.Threading.Tasks;
-using Preliy.Flange.Planner.Instructions;
+using Preliy.Flange.Planner.RawInstructions;
 using UnityEditor;
 using UnityEditor.UIElements;
 using UnityEngine.UIElements;
 
 namespace Preliy.Flange.Planner.Editor
 {
-    [CustomEditor(typeof(Sequence), true)]
+    [CustomEditor(typeof(Program), true)]
     public class RobotProgramInspector : UnityEditor.Editor
     {
-        private Sequence _sequence;
+        private Program _program;
         private VisualElement _instructionListContainer;
 
         private void OnEnable()
         {
-            _sequence = target as Sequence;
+            _program = target as Program;
         }
 
         public override VisualElement CreateInspectorGUI()
@@ -39,7 +39,7 @@ namespace Preliy.Flange.Planner.Editor
         
         private void CompileButtonClick()
         {
-            _sequence.Compile(new CancellationToken()).Forget();
+            _program.Compile(new CancellationToken()).Forget();
         }
     }
 }

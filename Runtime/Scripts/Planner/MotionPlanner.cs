@@ -6,8 +6,8 @@ using System;
 using System.Collections.Generic;
 using System.Threading;
 using Cysharp.Threading.Tasks;
-using Preliy.Flange.Planner.Instructions;
-using Motion = Preliy.Flange.Planner.Instructions.Motion;
+using Preliy.Flange.Planner.RawInstructions;
+using Motion = Preliy.Flange.Planner.RawInstructions.Motion;
 
 namespace Preliy.Flange.Planner
 {

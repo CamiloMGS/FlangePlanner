@@ -2,7 +2,7 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
-using Preliy.Flange.Planner.Instructions;
+using Preliy.Flange.Planner.RawInstructions;
 using UnityEngine;
 
 namespace Preliy.Flange.Planner
@@ -10,7 +10,7 @@ namespace Preliy.Flange.Planner
     public class TrajectoryDebugger : MonoBehaviour
     {
         [SerializeField]
-        private Sequence _sequence;
+        private Program _sequence;
         
         [Header("Gizmos")]
         [SerializeField]

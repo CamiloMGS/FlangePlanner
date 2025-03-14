@@ -3,7 +3,7 @@
 // file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 using System;
-using Preliy.Flange.Planner.Instructions;
+using Preliy.Flange.Planner.RawInstructions;
 using UnityEngine;
 using Object = UnityEngine.Object;
 

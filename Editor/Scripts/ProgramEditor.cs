@@ -3,7 +3,7 @@
 // file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 using Preliy.Flange.Editor;
-using Preliy.Flange.Planner.Instructions;
+using Preliy.Flange.Planner.RawInstructions;
 using UnityEditor;
 using UnityEditor.UIElements;
 using UnityEngine;
@@ -76,14 +76,14 @@ namespace Preliy.Flange.Planner.Editor
             Select(Selection.activeGameObject);
         }
         
-        private void OnProgramChanged(Program program)
+        private void OnProgramChanged(Program sequence)
         {
-            EnableContent(program != null);
-            _programObject.SetValueWithoutNotify(program);
+            EnableContent(sequence != null);
+            _programObject.SetValueWithoutNotify(sequence);
 
-            var serializedObject = new SerializedObject(program);
+            var serializedObject = new SerializedObject(sequence);
             
-            _taskEditor.Bind(program.Task);
+            _taskEditor.Bind(sequence.Task);
             
             _taskEditor.Bind(serializedObject);
         }
