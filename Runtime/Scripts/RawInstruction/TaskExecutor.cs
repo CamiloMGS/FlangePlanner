@@ -21,7 +21,7 @@ namespace Preliy.Flange.Planner.RawInstructions
         [SerializeField]
         private Task _task;
 
-        public override void Plan(Controller controller, int index)
+        public override void Plan()
         {
             try
             {
@@ -41,6 +41,18 @@ namespace Preliy.Flange.Planner.RawInstructions
             _state = InstructionState.Busy;
             await _task.Execute(playerLoopTiming, cancellationToken);
             _state = InstructionState.Done;
+        }
+        
+        public override string ToString()
+        {
+            return string.Format(FORMAT, _index, "TASK");
+        }
+        
+        protected const string FORMAT_DESCRIPTION = "{0}: {1}";
+        
+        public override string ToDescription()
+        {
+            return string.Format(FORMAT_DESCRIPTION, "SubTask:", _task.name);
         }
     }    
 }

@@ -142,9 +142,9 @@ namespace Preliy.Flange.Planner
 
             foreach (var instruction in _instructions)
             {
-                Logger.Log(LogType.Log, this, instruction, ActionState.Start);
+                Logger.LogVerbose(LogType.Log, this, instruction, ActionState.Start);
                 await instruction.Execute(playerLoopTiming, cancellationToken);
-                Logger.Log(LogType.Log, this, instruction, ActionState.End);
+                Logger.LogVerbose(LogType.Log, this, instruction, ActionState.End);
             }
         }
 
@@ -152,7 +152,7 @@ namespace Preliy.Flange.Planner
         {
             for (var i = 0; i < _instructions.Count; i++)
             {
-                //_instructions[i].Index = i;
+                _instructions[i].Initialize(_controller, i);
             }
 
             _motions = _instructions.OfType<Motion>().ToList();

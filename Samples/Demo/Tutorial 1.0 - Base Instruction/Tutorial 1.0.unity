@@ -866,7 +866,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _state:
     _value: 0
-  _sequence:
+  _task:
     _value: {fileID: 0}
   _autoStart:
     _value: 0
@@ -917,30 +917,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b79d7b4898a5a2443b928d8488133af2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _isValid: 1
   _controller: {fileID: 8757450901980375699}
-  _task:
-    _name: Task
-    _context: {fileID: 31079212}
-    _instructions:
-    - rid: -2
-    - rid: -2
-    - rid: -2
-    - rid: -2
-    - rid: -2
-    - rid: -2
-    - rid: -2
-    _duration: 0
-    _motions:
-    - rid: -2
-    - rid: -2
-    - rid: -2
-    - rid: -2
-    - rid: -2
-    - rid: -2
-    - rid: -2
-    _isValid: 1
-    _verbose: 0
+  _instructions:
+  - rid: 7549459399775617164
+  - rid: 7549459399775617165
+  - rid: 7549459399775617166
+  - rid: 7549459399775617167
+  - rid: 7549459399775617168
+  - rid: 7549459399775617169
+  - rid: 7549459399775617170
   _alwaysCompile: 1
+  _verbose: 0
   _taskGizmosConfig:
     _enable: 1
     _scale: 0.85
@@ -949,13 +937,433 @@ MonoBehaviour:
     _showBlendZone: 1
     _showDescription: 0
     _showTrajectory: 0
+  _duration: 0
+  _motions:
+  - rid: 7549459399775617164
+  - rid: 7549459399775617165
+  - rid: 7549459399775617166
+  - rid: 7549459399775617167
+  - rid: 7549459399775617168
+  - rid: 7549459399775617169
+  - rid: 7549459399775617170
   _target: {fileID: 748570894}
   _corner: {x: 0.2, y: 0.2, z: 0.2}
   references:
     version: 2
     RefIds:
-    - rid: -2
-      type: {class: , ns: , asm: }
+    - rid: 7549459399775617164
+      type: {class: PTPCartesianTarget, ns: Preliy.Flange.Planner.RawInstructions,
+        asm: Preliy.Flange.Planner}
+      data:
+        name: 0 PTP
+        _controller: {fileID: 8757450901980375699}
+        _index: 0
+        _state: 1
+        _speed: 1
+        _blending: -1
+        _isTempJob: 1
+        _jointTarget:
+          _robJoint:
+            _r1: 0
+            _r2: 16.381
+            _r3: 34.1
+            _r4: 0
+            _r5: 39.517
+            _r6: 0
+          _extJoint:
+            _e1: 0
+            _e2: 0
+            _e3: 0
+            _e4: 0
+            _e5: 0
+            _e6: 0
+        _cartesianTarget:
+          _object: {fileID: 748570894}
+          _pose:
+            e00: 1
+            e01: 0.00000011921074
+            e02: -0.00000008429169
+            e03: 0
+            e10: 0.00000011920779
+            e11: -1
+            e12: -0.00003489757
+            e13: 0.6
+            e20: -0.000000084295856
+            e21: 0.00003489757
+            e22: -1
+            e23: 1.5
+            e30: 0
+            e31: 0
+            e32: 0
+            e33: 1
+          _configuration:
+            _turn1: 0
+            _turn4: 0
+            _turn6: 0
+            _index: 0
+          _extJoint:
+            _e1: 0
+            _e2: 0
+            _e3: 0
+            _e4: 0
+            _e5: 0
+            _e6: 0
+        _tool: 0
+        _frame: 0
+    - rid: 7549459399775617165
+      type: {class: PTPCartesianTarget, ns: Preliy.Flange.Planner.RawInstructions,
+        asm: Preliy.Flange.Planner}
+      data:
+        name: 1 PTP
+        _controller: {fileID: 8757450901980375699}
+        _index: 1
+        _state: 1
+        _speed: 0.1
+        _blending: 0.15
+        _isTempJob: 0
+        _jointTarget:
+          _robJoint:
+            _r1: -8.746
+            _r2: 17.377
+            _r3: 45.825
+            _r4: 0.001
+            _r5: 26.796
+            _r6: -8.747
+          _extJoint:
+            _e1: 0
+            _e2: 0
+            _e3: 0
+            _e4: 0
+            _e5: 0
+            _e6: 0
+        _cartesianTarget:
+          _object: {fileID: 748570894}
+          _pose:
+            e00: 1
+            e01: 0.00000011921074
+            e02: -0.00000008429169
+            e03: 0.2
+            e10: 0.00000011920779
+            e11: -1
+            e12: -0.00003489757
+            e13: 0.39999306
+            e20: -0.000000084295856
+            e21: 0.00003489757
+            e22: -1
+            e23: 1.300007
+            e30: 0
+            e31: 0
+            e32: 0
+            e33: 1
+          _configuration:
+            _turn1: 0
+            _turn4: 0
+            _turn6: 0
+            _index: 0
+          _extJoint:
+            _e1: 0
+            _e2: 0
+            _e3: 0
+            _e4: 0
+            _e5: 0
+            _e6: 0
+        _tool: 0
+        _frame: 0
+    - rid: 7549459399775617166
+      type: {class: PTPCartesianTarget, ns: Preliy.Flange.Planner.RawInstructions,
+        asm: Preliy.Flange.Planner}
+      data:
+        name: 2 PTP
+        _controller: {fileID: 8757450901980375699}
+        _index: 2
+        _state: 1
+        _speed: 0.1
+        _blending: 0.15
+        _isTempJob: 0
+        _jointTarget:
+          _robJoint:
+            _r1: -6.71
+            _r2: 31.582
+            _r3: 23.493
+            _r4: 0
+            _r5: 34.924
+            _r6: -6.71
+          _extJoint:
+            _e1: 0
+            _e2: 0
+            _e3: 0
+            _e4: 0
+            _e5: 0
+            _e6: 0
+        _cartesianTarget:
+          _object: {fileID: 748570894}
+          _pose:
+            e00: 1
+            e01: 0.00000011921074
+            e02: -0.00000008429169
+            e03: 0.20000005
+            e10: 0.00000011920779
+            e11: -1
+            e12: -0.00003489757
+            e13: 0.400007
+            e20: -0.000000084295856
+            e21: 0.00003489757
+            e22: -1
+            e23: 1.700007
+            e30: 0
+            e31: 0
+            e32: 0
+            e33: 1
+          _configuration:
+            _turn1: 0
+            _turn4: 0
+            _turn6: 0
+            _index: 0
+          _extJoint:
+            _e1: 0
+            _e2: 0
+            _e3: 0
+            _e4: 0
+            _e5: 0
+            _e6: 0
+        _tool: 0
+        _frame: 0
+    - rid: 7549459399775617167
+      type: {class: PTPCartesianTarget, ns: Preliy.Flange.Planner.RawInstructions,
+        asm: Preliy.Flange.Planner}
+      data:
+        name: 3 PTP
+        _controller: {fileID: 8757450901980375699}
+        _index: 3
+        _state: 1
+        _speed: 0.1
+        _blending: 0.15
+        _isTempJob: 0
+        _jointTarget:
+          _robJoint:
+            _r1: 6.71
+            _r2: 31.582
+            _r3: 23.493
+            _r4: 0
+            _r5: 34.924
+            _r6: 6.71
+          _extJoint:
+            _e1: 0
+            _e2: 0
+            _e3: 0
+            _e4: 0
+            _e5: 0
+            _e6: 0
+        _cartesianTarget:
+          _object: {fileID: 748570894}
+          _pose:
+            e00: 1
+            e01: 0.00000011921074
+            e02: -0.00000008429169
+            e03: -0.19999996
+            e10: 0.00000011920779
+            e11: -1
+            e12: -0.00003489757
+            e13: 0.40000698
+            e20: -0.000000084295856
+            e21: 0.00003489757
+            e22: -1
+            e23: 1.700007
+            e30: 0
+            e31: 0
+            e32: 0
+            e33: 1
+          _configuration:
+            _turn1: 0
+            _turn4: 0
+            _turn6: 0
+            _index: 0
+          _extJoint:
+            _e1: 0
+            _e2: 0
+            _e3: 0
+            _e4: 0
+            _e5: 0
+            _e6: 0
+        _tool: 0
+        _frame: 0
+    - rid: 7549459399775617168
+      type: {class: PTPCartesianTarget, ns: Preliy.Flange.Planner.RawInstructions,
+        asm: Preliy.Flange.Planner}
+      data:
+        name: 4 PTP
+        _controller: {fileID: 8757450901980375699}
+        _index: 4
+        _state: 1
+        _speed: 0.1
+        _blending: 0.15
+        _isTempJob: 0
+        _jointTarget:
+          _robJoint:
+            _r1: 8.746
+            _r2: 17.377
+            _r3: 45.825
+            _r4: -0.001
+            _r5: 26.796
+            _r6: 8.747
+          _extJoint:
+            _e1: 0
+            _e2: 0
+            _e3: 0
+            _e4: 0
+            _e5: 0
+            _e6: 0
+        _cartesianTarget:
+          _object: {fileID: 748570894}
+          _pose:
+            e00: 1
+            e01: 0.00000011921074
+            e02: -0.00000008429169
+            e03: -0.2
+            e10: 0.00000011920779
+            e11: -1
+            e12: -0.00003489757
+            e13: 0.39999303
+            e20: -0.000000084295856
+            e21: 0.00003489757
+            e22: -1
+            e23: 1.300007
+            e30: 0
+            e31: 0
+            e32: 0
+            e33: 1
+          _configuration:
+            _turn1: 0
+            _turn4: 0
+            _turn6: 0
+            _index: 0
+          _extJoint:
+            _e1: 0
+            _e2: 0
+            _e3: 0
+            _e4: 0
+            _e5: 0
+            _e6: 0
+        _tool: 0
+        _frame: 0
+    - rid: 7549459399775617169
+      type: {class: PTPCartesianTarget, ns: Preliy.Flange.Planner.RawInstructions,
+        asm: Preliy.Flange.Planner}
+      data:
+        name: 5 PTP
+        _controller: {fileID: 8757450901980375699}
+        _index: 5
+        _state: 1
+        _speed: 0.1
+        _blending: 0.15
+        _isTempJob: 0
+        _jointTarget:
+          _robJoint:
+            _r1: -8.746
+            _r2: 17.377
+            _r3: 45.825
+            _r4: 0.001
+            _r5: 26.796
+            _r6: -8.747
+          _extJoint:
+            _e1: 0
+            _e2: 0
+            _e3: 0
+            _e4: 0
+            _e5: 0
+            _e6: 0
+        _cartesianTarget:
+          _object: {fileID: 748570894}
+          _pose:
+            e00: 1
+            e01: 0.00000011921074
+            e02: -0.00000008429169
+            e03: 0.2
+            e10: 0.00000011920779
+            e11: -1
+            e12: -0.00003489757
+            e13: 0.39999306
+            e20: -0.000000084295856
+            e21: 0.00003489757
+            e22: -1
+            e23: 1.300007
+            e30: 0
+            e31: 0
+            e32: 0
+            e33: 1
+          _configuration:
+            _turn1: 0
+            _turn4: 0
+            _turn6: 0
+            _index: 0
+          _extJoint:
+            _e1: 0
+            _e2: 0
+            _e3: 0
+            _e4: 0
+            _e5: 0
+            _e6: 0
+        _tool: 0
+        _frame: 0
+    - rid: 7549459399775617170
+      type: {class: PTPCartesianTarget, ns: Preliy.Flange.Planner.RawInstructions,
+        asm: Preliy.Flange.Planner}
+      data:
+        name: 6 PTP
+        _controller: {fileID: 8757450901980375699}
+        _index: 6
+        _state: 1
+        _speed: 1
+        _blending: -1
+        _isTempJob: 0
+        _jointTarget:
+          _robJoint:
+            _r1: 0
+            _r2: 16.381
+            _r3: 34.1
+            _r4: 0
+            _r5: 39.517
+            _r6: 0
+          _extJoint:
+            _e1: 0
+            _e2: 0
+            _e3: 0
+            _e4: 0
+            _e5: 0
+            _e6: 0
+        _cartesianTarget:
+          _object: {fileID: 748570894}
+          _pose:
+            e00: 1
+            e01: 0.00000011921074
+            e02: -0.00000008429169
+            e03: 0
+            e10: 0.00000011920779
+            e11: -1
+            e12: -0.00003489757
+            e13: 0.6
+            e20: -0.000000084295856
+            e21: 0.00003489757
+            e22: -1
+            e23: 1.5
+            e30: 0
+            e31: 0
+            e32: 0
+            e33: 1
+          _configuration:
+            _turn1: 0
+            _turn4: 0
+            _turn6: 0
+            _index: 0
+          _extJoint:
+            _e1: 0
+            _e2: 0
+            _e3: 0
+            _e4: 0
+            _e5: 0
+            _e6: 0
+        _tool: 0
+        _frame: 0
 --- !u!114 &31079213
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -968,9 +1376,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ddfe7a65d59d4a84ad4c3ce9d4ed9494, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _sequence: {fileID: 31079212}
+  _task: {fileID: 31079212}
   _config:
-    _enable: 0
+    _enable: 1
     _scale: 0.13
     _color: {r: 0, g: 1, b: 1, a: 1}
     _showPoints: 1
@@ -2010,7 +2418,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _state:
     _value: 0
-  _sequence:
+  _task:
     _value: {fileID: 0}
   _autoStart:
     _value: 0
@@ -2354,7 +2762,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &365974582
 Transform:
   m_ObjectHideFlags: 0
@@ -3273,7 +3681,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _state:
     _value: 0
-  _sequence:
+  _task:
     _value: {fileID: 0}
   _autoStart:
     _value: 0
@@ -3364,30 +3772,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2cebd3baa48b15641aa97088ffa816ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _isValid: 0
   _controller: {fileID: 502540193}
-  _task:
-    _name: Task
-    _context: {fileID: 654912394}
-    _instructions:
-    - rid: -2
-    - rid: -2
-    - rid: -2
-    - rid: -2
-    - rid: -2
-    - rid: -2
-    - rid: -2
-    _duration: 0
-    _motions:
-    - rid: -2
-    - rid: -2
-    - rid: -2
-    - rid: -2
-    - rid: -2
-    - rid: -2
-    - rid: -2
-    _isValid: 0
-    _verbose: 0
+  _instructions:
+  - rid: -2
+  - rid: -2
+  - rid: 7549459399775617026
+  - rid: 7549459399775617027
+  - rid: 7549459399775617028
+  - rid: 7549459399775617029
+  - rid: -2
   _alwaysCompile: 0
+  _verbose: 0
   _taskGizmosConfig:
     _enable: 1
     _scale: 1
@@ -3396,12 +3792,261 @@ MonoBehaviour:
     _showBlendZone: 0
     _showDescription: 0
     _showTrajectory: 0
+  _duration: 0
+  _motions:
+  - rid: -2
+  - rid: -2
+  - rid: 7549459399775617026
+  - rid: 7549459399775617027
+  - rid: 7549459399775617028
+  - rid: 7549459399775617029
+  - rid: -2
   _target: {fileID: 1428497435}
   references:
     version: 2
     RefIds:
     - rid: -2
       type: {class: , ns: , asm: }
+    - rid: 7549459399775617026
+      type: {class: LIN, ns: Preliy.Flange.Planner.RawInstructions, asm: Preliy.Flange.Planner}
+      data:
+        name: 
+        _controller: {fileID: 502540193}
+        _index: 2
+        _state: 1
+        _speed: 0.3
+        _blending: 0.1
+        _isTempJob: 0
+        _target:
+          e00: 1
+          e01: 0.00000011921074
+          e02: -0.00000008429169
+          e03: -2.6999998
+          e10: 0.00000011920779
+          e11: -1
+          e12: -0.00003489757
+          e13: 0.40001303
+          e20: -0.000000084295856
+          e21: 0.00003489757
+          e22: -1
+          e23: 1.8000048
+          e30: 0
+          e31: 0
+          e32: 0
+          e33: 1
+        _cartesianTarget:
+          _object: {fileID: 1428497435}
+          _pose:
+            e00: 1
+            e01: 0.00000011921074
+            e02: -0.00000008429169
+            e03: 0.30000007
+            e10: 0.00000011920779
+            e11: -1
+            e12: -0.00003489757
+            e13: 0.40001303
+            e20: -0.000000084295856
+            e21: 0.00003489757
+            e22: -1
+            e23: 1.8000048
+            e30: 0
+            e31: 0
+            e32: 0
+            e33: 1
+          _configuration:
+            _turn1: 0
+            _turn4: 0
+            _turn6: 0
+            _index: 0
+          _extJoint:
+            _e1: 0
+            _e2: 0
+            _e3: 0
+            _e4: 0
+            _e5: 0
+            _e6: 0
+        _tool: 0
+        _frame: 0
+    - rid: 7549459399775617027
+      type: {class: LIN, ns: Preliy.Flange.Planner.RawInstructions, asm: Preliy.Flange.Planner}
+      data:
+        name: 
+        _controller: {fileID: 502540193}
+        _index: 3
+        _state: 1
+        _speed: 0.3
+        _blending: 0.1
+        _isTempJob: 0
+        _target:
+          e00: 1
+          e01: 0.00000011921074
+          e02: -0.00000008429169
+          e03: -3.3
+          e10: 0.00000011920779
+          e11: -1
+          e12: -0.00003489757
+          e13: 0.40001297
+          e20: -0.000000084295856
+          e21: 0.00003489757
+          e22: -1
+          e23: 1.8000048
+          e30: 0
+          e31: 0
+          e32: 0
+          e33: 1
+        _cartesianTarget:
+          _object: {fileID: 1428497435}
+          _pose:
+            e00: 1
+            e01: 0.00000011921074
+            e02: -0.00000008429169
+            e03: -0.29999995
+            e10: 0.00000011920779
+            e11: -1
+            e12: -0.00003489757
+            e13: 0.40001297
+            e20: -0.000000084295856
+            e21: 0.00003489757
+            e22: -1
+            e23: 1.8000048
+            e30: 0
+            e31: 0
+            e32: 0
+            e33: 1
+          _configuration:
+            _turn1: 0
+            _turn4: 0
+            _turn6: 0
+            _index: 0
+          _extJoint:
+            _e1: 0
+            _e2: 0
+            _e3: 0
+            _e4: 0
+            _e5: 0
+            _e6: 0
+        _tool: 0
+        _frame: 0
+    - rid: 7549459399775617028
+      type: {class: LIN, ns: Preliy.Flange.Planner.RawInstructions, asm: Preliy.Flange.Planner}
+      data:
+        name: 
+        _controller: {fileID: 502540193}
+        _index: 4
+        _state: 1
+        _speed: 0.3
+        _blending: 0.1
+        _isTempJob: 0
+        _target:
+          e00: 1
+          e01: 0.00000011921074
+          e02: -0.00000008429169
+          e03: -3.3
+          e10: 0.00000011920779
+          e11: -1
+          e12: -0.00003489757
+          e13: 0.39999202
+          e20: -0.000000084295856
+          e21: 0.00003489757
+          e22: -1
+          e23: 1.2000048
+          e30: 0
+          e31: 0
+          e32: 0
+          e33: 1
+        _cartesianTarget:
+          _object: {fileID: 1428497435}
+          _pose:
+            e00: 1
+            e01: 0.00000011921074
+            e02: -0.00000008429169
+            e03: -0.3
+            e10: 0.00000011920779
+            e11: -1
+            e12: -0.00003489757
+            e13: 0.39999202
+            e20: -0.000000084295856
+            e21: 0.00003489757
+            e22: -1
+            e23: 1.2000048
+            e30: 0
+            e31: 0
+            e32: 0
+            e33: 1
+          _configuration:
+            _turn1: 0
+            _turn4: 0
+            _turn6: 0
+            _index: 0
+          _extJoint:
+            _e1: 0
+            _e2: 0
+            _e3: 0
+            _e4: 0
+            _e5: 0
+            _e6: 0
+        _tool: 0
+        _frame: 0
+    - rid: 7549459399775617029
+      type: {class: LIN, ns: Preliy.Flange.Planner.RawInstructions, asm: Preliy.Flange.Planner}
+      data:
+        name: 
+        _controller: {fileID: 502540193}
+        _index: 5
+        _state: 1
+        _speed: 0.3
+        _blending: 0.1
+        _isTempJob: 0
+        _target:
+          e00: 1
+          e01: 0.00000011921074
+          e02: -0.00000008429169
+          e03: -2.7
+          e10: 0.00000011920779
+          e11: -1
+          e12: -0.00003489757
+          e13: 0.39999208
+          e20: -0.000000084295856
+          e21: 0.00003489757
+          e22: -1
+          e23: 1.2000048
+          e30: 0
+          e31: 0
+          e32: 0
+          e33: 1
+        _cartesianTarget:
+          _object: {fileID: 1428497435}
+          _pose:
+            e00: 1
+            e01: 0.00000011921074
+            e02: -0.00000008429169
+            e03: 0.3
+            e10: 0.00000011920779
+            e11: -1
+            e12: -0.00003489757
+            e13: 0.39999208
+            e20: -0.000000084295856
+            e21: 0.00003489757
+            e22: -1
+            e23: 1.2000048
+            e30: 0
+            e31: 0
+            e32: 0
+            e33: 1
+          _configuration:
+            _turn1: 0
+            _turn4: 0
+            _turn6: 0
+            _index: 0
+          _extJoint:
+            _e1: 0
+            _e2: 0
+            _e3: 0
+            _e4: 0
+            _e5: 0
+            _e6: 0
+        _tool: 0
+        _frame: 0
 --- !u!114 &654912395
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3414,7 +4059,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ddfe7a65d59d4a84ad4c3ce9d4ed9494, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _sequence: {fileID: 654912394}
+  _task: {fileID: 0}
   _config:
     _enable: 1
     _scale: 1
@@ -3680,30 +4325,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfeedb926356e0942a53d541c1497cca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _isValid: 0
   _controller: {fileID: 328258616}
-  _task:
-    _name: Task
-    _context: {fileID: 790184300}
-    _instructions:
-    - rid: -2
-    - rid: -2
-    - rid: -2
-    - rid: -2
-    - rid: -2
-    - rid: -2
-    - rid: -2
-    _duration: 0
-    _motions:
-    - rid: -2
-    - rid: -2
-    - rid: -2
-    - rid: -2
-    - rid: -2
-    - rid: -2
-    - rid: -2
-    _isValid: 1
-    _verbose: 0
+  _instructions: []
   _alwaysCompile: 0
+  _verbose: 0
   _taskGizmosConfig:
     _enable: 0
     _scale: 1
@@ -3712,6 +4338,8 @@ MonoBehaviour:
     _showBlendZone: 0
     _showDescription: 0
     _showTrajectory: 0
+  _duration: 0
+  _motions: []
   _home:
     _object: {fileID: 0}
     _pose:
@@ -3752,9 +4380,7 @@ MonoBehaviour:
   - {fileID: 1498166653}
   references:
     version: 2
-    RefIds:
-    - rid: -2
-      type: {class: , ns: , asm: }
+    RefIds: []
 --- !u!43 &829058904
 Mesh:
   m_ObjectHideFlags: 0
@@ -5096,7 +5722,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1424080277
 Transform:
   m_ObjectHideFlags: 0
@@ -5217,24 +5843,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8da600d0bd3e54841bb4097354c2a9ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _isValid: 0
   _controller: {fileID: 1689083009}
-  _task:
-    _name: Task
-    _context: {fileID: 1476201517}
-    _instructions:
-    - rid: -2
-    - rid: -2
-    - rid: -2
-    - rid: -2
-    _duration: 0
-    _motions:
-    - rid: -2
-    - rid: -2
-    - rid: -2
-    - rid: -2
-    _isValid: 1
-    _verbose: 0
+  _instructions: []
   _alwaysCompile: 0
+  _verbose: 0
   _taskGizmosConfig:
     _enable: 0
     _scale: 1
@@ -5243,6 +5856,8 @@ MonoBehaviour:
     _showBlendZone: 0
     _showDescription: 0
     _showTrajectory: 0
+  _duration: 0
+  _motions: []
   _home: {fileID: 257008834}
   _targets:
   - {fileID: 1869844697}
@@ -5250,9 +5865,7 @@ MonoBehaviour:
   - {fileID: 315179733}
   references:
     version: 2
-    RefIds:
-    - rid: -2
-      type: {class: , ns: , asm: }
+    RefIds: []
 --- !u!1 &1498166651
 GameObject:
   m_ObjectHideFlags: 0
@@ -6021,7 +6634,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _state:
     _value: 0
-  _sequence:
+  _task:
     _value: {fileID: 0}
   _autoStart:
     _value: 0
@@ -6072,22 +6685,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36d271a74a3ccfc46b5a5392925978be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _isValid: 0
   _controller: {fileID: 3986736}
-  _task:
-    _name: Task
-    _context: {fileID: 1711213355}
-    _instructions:
-    - rid: -2
-    - rid: -2
-    - rid: -2
-    _duration: 0
-    _motions:
-    - rid: -2
-    - rid: -2
-    - rid: -2
-    _isValid: 1
-    _verbose: 0
+  _instructions: []
   _alwaysCompile: 0
+  _verbose: 0
   _taskGizmosConfig:
     _enable: 0
     _scale: 1
@@ -6096,14 +6698,14 @@ MonoBehaviour:
     _showBlendZone: 0
     _showDescription: 0
     _showTrajectory: 0
+  _duration: 0
+  _motions: []
   _start: {fileID: 491482262}
   _target: {fileID: 1065866281}
   _waypoint: {fileID: 1578649}
   references:
     version: 2
-    RefIds:
-    - rid: -2
-      type: {class: , ns: , asm: }
+    RefIds: []
 --- !u!114 &1711213356
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6116,7 +6718,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ddfe7a65d59d4a84ad4c3ce9d4ed9494, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _sequence: {fileID: 1711213355}
+  _task: {fileID: 0}
   _config:
     _enable: 0
     _scale: 1
@@ -7326,8 +7928,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _state:
     _value: 0
-  _sequence:
-    _value: {fileID: 0}
+  _task:
+    _value: {fileID: 31079212}
   _autoStart:
     _value: 0
   _loop:

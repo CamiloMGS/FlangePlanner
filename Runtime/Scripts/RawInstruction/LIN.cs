@@ -11,11 +11,11 @@ namespace Preliy.Flange.Planner.RawInstructions
     // ReSharper disable once InconsistentNaming
     public class LIN : CartesianMotion
     {
-        public override void Plan(Controller controller, int index)
+        public override void Plan()
         {
             try
             {
-                base.Plan(controller, index);
+                base.Plan();
                 
                 //TODO compute inverse with external axes
                 _tool = _controller.GetValidToolIndex(_tool); 
@@ -91,6 +91,18 @@ namespace Preliy.Flange.Planner.RawInstructions
         public override void JumpToTarget()
         {
             throw new NotImplementedException();
+        }
+        
+        public override string ToString()
+        {
+            return string.Format(FORMAT, _index, "LIN");
+        }
+        
+        protected const string FORMAT_DESCRIPTION = "TARGET:{0} S:{1} B:{2} T:{3} F:{4}";
+        
+        public override string ToDescription()
+        {
+            return string.Format(FORMAT_DESCRIPTION, _cartesianTarget, _speed, _blending, _tool, _frame);
         }
     }
 }

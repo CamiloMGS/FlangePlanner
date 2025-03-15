@@ -36,7 +36,7 @@ namespace Preliy.Flange.Planner
         // ReSharper disable once InconsistentNaming
         public void PTP(CartesianTarget target, float speed = 1f, int tool = -1, int frame = (int)CoordinateSystem.Base, float blending = -1f)
         {
-            Add(new PTPRobotTarget
+            Add(new PTPCartesianTarget
             {
                 CartesianTarget = target,
                 Tool = tool,

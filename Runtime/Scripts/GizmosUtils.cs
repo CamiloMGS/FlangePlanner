@@ -77,7 +77,7 @@ namespace Preliy.Flange.Planner
             Gizmos.DrawSphere(position, 0.01f * scale);
 
             var labelPosition = position + Vector3.down * 0.04f * scale;
-            Handles.Label(labelPosition, description ? $"{instruction.Name} \n{instruction.Name}" : instruction.Name);
+            Handles.Label(labelPosition, description ? $"{instruction} \n{instruction.ToDescription()}" : instruction.ToString());
 
             if (blendZone && instruction.Blending > Math.TOLERANCE_FLOAT)
             {

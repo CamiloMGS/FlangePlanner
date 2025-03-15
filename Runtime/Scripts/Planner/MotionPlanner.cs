@@ -24,7 +24,7 @@ namespace Preliy.Flange.Planner
 
             try
             {
-                Initialize(task.Controller, task.Instructions);
+                Plan(task.Instructions);
                 InitializeMotions(task.Motions);
                 CreateTrajectory(task.Controller, task.Motions);
                 BlendTrajectory(task.Controller, task.Motions);
@@ -65,7 +65,7 @@ namespace Preliy.Flange.Planner
             }
         }
 
-        private static void Initialize(Controller controller, IList<Instruction> instructions)
+        private static void Plan(IList<Instruction> instructions)
         {
             if (instructions == null)
             {
@@ -77,9 +77,9 @@ namespace Preliy.Flange.Planner
                 throw new Exception("Instruction list is empty");
             }
 
-            for (var i = 0; i < instructions.Count; i++)
+            foreach (var instruction in instructions)
             {
-                instructions[i].Plan(controller, i);
+                instruction.Plan();
             }
         }
         

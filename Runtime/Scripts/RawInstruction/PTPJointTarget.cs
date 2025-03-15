@@ -11,11 +11,11 @@ namespace Preliy.Flange.Planner.RawInstructions
     // ReSharper disable once InconsistentNaming
     public class PTPJointTarget : JointMotion
     {
-        public override void Plan(Controller controller, int index)
+        public override void Plan()
         {
             try
             {
-                base.Plan(controller, index);
+                base.Plan();
                 //TODO Validate Joint target
                 _state = InstructionState.Ready;
             }
@@ -39,6 +39,22 @@ namespace Preliy.Flange.Planner.RawInstructions
         public override void JumpToTarget()
         {
             throw new NotImplementedException();
+        }
+        
+        public override string ToString()
+        {
+            return string.Format(FORMAT, _index, "PTP");
+        }
+        
+        protected const string FORMAT_DESCRIPTION = 
+            "R: {0}\n  " +
+            "E: {1}\n " +
+            "S: {2}\n " +
+            "B: {3}";
+        
+        public override string ToDescription()
+        {
+            return string.Format(FORMAT_DESCRIPTION, _jointTarget.RobJoint, _jointTarget.ExtJoint, _speed, _blending);
         }
     }
 }

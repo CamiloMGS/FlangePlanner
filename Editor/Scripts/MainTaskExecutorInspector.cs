@@ -11,7 +11,7 @@ using UnityEngine.UIElements;
 namespace Preliy.Flange.Planner.Editor
 {
     [CustomEditor(typeof(MainTaskExecutor))]
-    public class SequenceExecutorInspector : UnityEditor.Editor
+    public class MainTaskExecutorInspector : UnityEditor.Editor
     {
         private const string USS = "USS/Inspector";
         private Label _stateLabel;
@@ -41,9 +41,9 @@ namespace Preliy.Flange.Planner.Editor
             _stateLabel.AddToClassList("unity-base-field");
             _stateLabel.AddToClassList("unity-text-field");
 
-            var taskField = new PropertyField(serializedObject.FindProperty("_sequence").FindPropertyRelative("value"), "Sequence");
-            var autoStartField = new PropertyField(serializedObject.FindProperty("_autoStart").FindPropertyRelative("value"), "Auto Start");
-            var loopField = new PropertyField(serializedObject.FindProperty("_loop").FindPropertyRelative("value"), "Loop");
+            var taskField = new PropertyField(serializedObject.FindProperty("_task._value"), "Task");
+            var autoStartField = new PropertyField(serializedObject.FindProperty("_autoStart._value"), "Auto Start");
+            var loopField = new PropertyField(serializedObject.FindProperty("_loop._value"), "Loop");
 
             var executeButton = new Button(() => _mainTaskExecutor.Execute())
             {

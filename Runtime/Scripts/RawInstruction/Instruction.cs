@@ -12,12 +12,14 @@ namespace Preliy.Flange.Planner.RawInstructions
     [Serializable]
     public abstract class Instruction
     {
-        public string Name => string.Format(FORMAT, _index, GetType());
-
-        public Controller Controller => _controller;
+        public string Name => name;
         public int Index => _index;
         public InstructionState State => _state;
 
+        [SerializeField]
+        // ReSharper disable once InconsistentNaming
+        // Need for unity Array Element Name
+        private string name;
         [SerializeField]
         protected Controller _controller;
         [SerializeField]
@@ -25,16 +27,25 @@ namespace Preliy.Flange.Planner.RawInstructions
         [SerializeField]
         protected InstructionState _state = InstructionState.Idle;
 
-        private const string FORMAT = "{0} {1}";
+        protected const string FORMAT = "{0} {1}";
 
-        public virtual void Plan(Controller controller, int index)
+        public void Initialize(Controller controller, int index)
         {
             _state = InstructionState.Idle;
             _controller = controller;
             _index = index;
+            name = ToString();
+        }
+
+        public virtual void Plan()
+        {
+            if (_state != InstructionState.Idle) throw new Exception("State is not Idle");
         }
 
         public abstract UniTask Execute(PlayerLoopTiming playerLoopTiming, CancellationToken cancellationToken);
+
+        public abstract override string ToString();
+        public abstract string ToDescription();
     }
 }
 

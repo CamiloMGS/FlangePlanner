@@ -35,6 +35,18 @@ namespace Preliy.Flange.Planner.RawInstructions
             await UniTask.Yield(playerLoopTiming);
             _state = InstructionState.Done;
         }
+        
+        public override string ToString()
+        {
+            return string.Format(FORMAT, _index, "LOG");
+        }
+        
+        protected const string FORMAT_DESCRIPTION = "{0}: {1}";
+        
+        public override string ToDescription()
+        {
+            return string.Format(FORMAT_DESCRIPTION, _logType, _message);
+        }
     }    
 }
 

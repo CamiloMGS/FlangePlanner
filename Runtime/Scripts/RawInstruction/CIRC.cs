@@ -23,12 +23,13 @@ namespace Preliy.Flange.Planner.RawInstructions
         private Matrix4x4 _targetWayPoint;
         [SerializeField]
         private CartesianTarget _wayPoint;
+
         
-        public override void Plan(Controller controller, int index)
+        public override void Plan()
         {
             try
             {
-                base.Plan(controller, index);
+                base.Plan();
                 
                 _tool = _controller.GetValidToolIndex(_tool); 
                 _target = _controller.FrameToWorld(_cartesianTarget.Pose, _frame, _cartesianTarget.ExtJoint);
@@ -105,6 +106,18 @@ namespace Preliy.Flange.Planner.RawInstructions
         public override void JumpToTarget()
         {
             throw new NotImplementedException();
+        }
+        
+        public override string ToString()
+        {
+            return string.Format(FORMAT, _index, "CIRC");
+        }
+        
+        protected const string FORMAT_DESCRIPTION = "TARGET:{0} WAY:{1} S:{2} B:{3} T:{4} F:{5}";
+        
+        public override string ToDescription()
+        {
+            return string.Format(FORMAT_DESCRIPTION, _cartesianTarget, _wayPoint, _speed, _blending, _tool, _frame);
         }
     }
 }

@@ -25,6 +25,18 @@ namespace Preliy.Flange.Planner.RawInstructions
             await UniTask.WaitUntil(_condition, cancellationToken: cancellationToken);
             _state = InstructionState.Done;
         }
+        
+        public override string ToString()
+        {
+            return string.Format(FORMAT, _index, "Wait Until");
+        }
+        
+        protected const string FORMAT_DESCRIPTION = "{0}: {1}";
+        
+        public override string ToDescription()
+        {
+            return string.Format(FORMAT_DESCRIPTION, "Condition", _condition);
+        }
     }    
 }
 

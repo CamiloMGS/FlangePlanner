@@ -58,13 +58,13 @@ namespace Preliy.Flange.Planner.Sequence
         private float _gizmosScale = 1f;
 
         [SerializeField]
-        private JointMotion _jointMotion = new PTPRobotTarget();
+        private JointMotion _jointMotion = new PTPCartesianTarget();
 
         private void Refresh()
         {
             _exception.Value = null;
             _cartesianTarget.Pose = transform.GetMatrix();
-            _jointMotion = new PTPRobotTarget
+            _jointMotion = new PTPCartesianTarget
             {
                 CartesianTarget = _sceneCartesianTarget != null ? _sceneCartesianTarget.Target : _cartesianTarget,
                 Tool = _tool,
@@ -88,7 +88,7 @@ namespace Preliy.Flange.Planner.Sequence
             try
             {
                 Refresh();
-                _jointMotion.Plan(_controller, _index);
+                _jointMotion.Plan();
                 _jointMotion.JumpToTarget();
             }
             catch (Exception exception)

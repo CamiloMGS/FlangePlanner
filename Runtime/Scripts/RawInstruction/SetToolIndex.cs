@@ -26,6 +26,18 @@ namespace Preliy.Flange.Planner.RawInstructions
             _controller.Tool.Value = _toolIndex;
             await UniTask.Yield(PlayerLoopTiming.FixedUpdate);
         }
+        
+        public override string ToString()
+        {
+            return string.Format(FORMAT, _index, "TOOL");
+        }
+        
+        protected const string FORMAT_DESCRIPTION = "{0}: {1}";
+        
+        public override string ToDescription()
+        {
+            return string.Format(FORMAT_DESCRIPTION, "ToolIndex", _toolIndex);
+        }
     }    
 }
 

@@ -9,7 +9,7 @@ namespace Preliy.Flange.Planner.RawInstructions
 {
     [Serializable]
     // ReSharper disable once InconsistentNaming
-    public class PTPRobotTarget : JointMotion
+    public class PTPCartesianTarget : JointMotion
     {
         public CartesianTarget CartesianTarget
         {
@@ -35,22 +35,21 @@ namespace Preliy.Flange.Planner.RawInstructions
         private int _tool;
         [SerializeField]
         private int _frame;
+        
+        protected new const string SHORT_TYPE = "PTP";
 
-        public override void Plan(Controller controller, int index)
+        public override void Plan()
         {
             try
             {
-                base.Plan(controller, index);
-                //TODO Validate Joint target
+                base.Plan();
 
                 _tool = _controller.GetValidToolIndex(_tool); 
                 
                 var solution = _controller.Solver.ComputeInverse(_cartesianTarget, _tool, _frame);
                 if (!solution.IsValid) throw solution.Exception;
-                
-                ////_target = _controller.FrameToWorld(_cartesianTarget.Pose, _frame, _cartesianTarget.ExtJoint);
-                //var solution = _controller.Solver.ComputeInverse(_cartesianTarget, _tool, _frame);
-                //if (!solution.IsSuccess) throw solution.Exception;
+
+                _jointTarget = solution.JointTarget;
                 
                 _state = InstructionState.Ready;
             }
@@ -84,6 +83,24 @@ namespace Preliy.Flange.Planner.RawInstructions
             if (!solution.IsValid) throw solution.Exception;
 
             _controller.Solver.TryApplySolution(solution);
+        }
+        
+        public override string ToString()
+        {
+            return string.Format(FORMAT, _index, "PTP");
+        }
+        
+        protected const string FORMAT_DESCRIPTION = 
+            "R: {0}" +
+            "\nE: {1}" +
+            "\nS: {2}" +
+            "\nB: {3}" +
+            "\nT: {4}" +
+            "\nF: {5}";
+        
+        public override string ToDescription()
+        {
+            return string.Format(FORMAT_DESCRIPTION, _jointTarget.RobJoint, _jointTarget.ExtJoint, _speed, _blending, _tool, _frame);
         }
     }
 }
