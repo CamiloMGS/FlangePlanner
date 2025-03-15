@@ -26,28 +26,28 @@ namespace Preliy.Flange.Planner
 
         public static void Log(LogType logType, Task task, Instruction instruction, string message, string comment = "")
         {
-            var format = string.Format(LOG_FORMAT, $"{task.Context.name} {task.Name}", instruction.Name, message, comment);
-            Preliy.Flange.Logger.UnityLogger.Log(logType, Preliy.Flange.Logger.TAG_PACKAGE, format, task.Context);
+            var format = string.Format(LOG_FORMAT, $"{task.name}", instruction.Name, message, comment);
+            Preliy.Flange.Logger.UnityLogger.Log(logType, Preliy.Flange.Logger.TAG_PACKAGE, format, task);
         }
         
         public static void Log(LogType logType, Task task, Instruction instruction, ActionState state, string comment = "")
         {
-            var format = string.Format(LOG_FORMAT, $"{task.Context.name} {task.Name}", instruction.Name, GetStateCustomString(state), comment);
-            Preliy.Flange.Logger.UnityLogger.Log(logType, Preliy.Flange.Logger.TAG_PACKAGE, format, task.Context);
+            var format = string.Format(LOG_FORMAT, $"{task.name}", instruction.Name, GetStateCustomString(state), comment);
+            Preliy.Flange.Logger.UnityLogger.Log(logType, Preliy.Flange.Logger.TAG_PACKAGE, format, task);
         }
         
         public static void LogVerbose(LogType logType, Task task, Instruction instruction, string message, string comment = "")
         {
             if (!task.Verbose) return;
-            var format = string.Format(LOG_FORMAT, $"{task.Context.name} {task.Name}", instruction.Name, message, comment);
-            Preliy.Flange.Logger.UnityLogger.Log(logType, $"[{TAG_DEBUG}] {Preliy.Flange.Logger.TAG_PACKAGE}", format, task.Context);
+            var format = string.Format(LOG_FORMAT, $"{task.name}", instruction.Name, message, comment);
+            Preliy.Flange.Logger.UnityLogger.Log(logType, $"[{TAG_DEBUG}] {Preliy.Flange.Logger.TAG_PACKAGE}", format, task);
         }
         
         public static void LogVerbose(LogType logType, Task task, Instruction instruction, ActionState state, string comment = "")
         {
             if (!task.Verbose) return;
-            var format = string.Format(LOG_FORMAT, $"{task.Context.name} {task.Name}", instruction.Name, GetStateCustomString(state), comment);
-            Preliy.Flange.Logger.UnityLogger.Log(logType, $"[{TAG_DEBUG}] {Preliy.Flange.Logger.TAG_PACKAGE}", format, task.Context);
+            var format = string.Format(LOG_FORMAT, $"{task.name}", instruction.Name, GetStateCustomString(state), comment);
+            Preliy.Flange.Logger.UnityLogger.Log(logType, $"[{TAG_DEBUG}] {Preliy.Flange.Logger.TAG_PACKAGE}", format, task);
         }
         
         private static string GetStateCustomString(ActionState state)

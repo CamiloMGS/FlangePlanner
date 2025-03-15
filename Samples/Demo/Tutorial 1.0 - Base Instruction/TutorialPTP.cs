@@ -7,7 +7,7 @@ using Preliy.Flange.Planner.RawInstructions;
 using Preliy.Flange.Planner.Sequence;
 using UnityEngine;
 
-public class TutorialPTP : Program
+public class TutorialPTP : Task
 {
     [SerializeField]
     private SceneCartesianTarget _target;

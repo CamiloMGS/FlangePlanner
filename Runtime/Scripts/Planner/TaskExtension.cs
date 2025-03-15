@@ -11,14 +11,14 @@ using PTPJointTarget = Preliy.Flange.Planner.RawInstructions.PTPJointTarget;
 
 namespace Preliy.Flange.Planner
 {
-    public abstract partial class Program
+    public abstract partial class Task
     {
         /// <summary>
         /// Log message is console
         /// </summary>
         protected void Log(LogType type, string message)
         {
-            Task.Add(new Log()
+            Add(new Log()
             {
                 LogType = type,
                 Message = message
@@ -36,7 +36,7 @@ namespace Preliy.Flange.Planner
         // ReSharper disable once InconsistentNaming
         public void PTP(CartesianTarget target, float speed = 1f, int tool = -1, int frame = (int)CoordinateSystem.Base, float blending = -1f)
         {
-            Task.Add(new PTPRobotTarget
+            Add(new PTPRobotTarget
             {
                 CartesianTarget = target,
                 Tool = tool,
@@ -55,7 +55,7 @@ namespace Preliy.Flange.Planner
         // ReSharper disable once InconsistentNaming
         public void PTP(JointTarget target, float speed = 1f, float blending = -1f)
         {
-            Task.Add(new PTPJointTarget
+            Add(new PTPJointTarget
             {
                 JointTarget = target,
                 Speed = speed,
@@ -90,7 +90,7 @@ namespace Preliy.Flange.Planner
         public void LIN(CartesianTarget target, float speed = 1f, int tool = -1, int frame = (int)CoordinateSystem.Base, float blending = -1f)
         {
             if (tool < -1) tool = _controller.Tool.Value;
-            Task.Add(new LIN
+            Add(new LIN
             {
                 CartesianTarget = target, 
                 Tool = tool, 
@@ -128,7 +128,7 @@ namespace Preliy.Flange.Planner
         public void CIRC(CartesianTarget target, CartesianTarget wayPoint, float speed = 1f, int tool = -1, int frame = (int)CoordinateSystem.Base, float blending = -1f)
         {
             if (tool < -1) tool = _controller.Tool.Value;
-            Task.Add(new CIRC
+            Add(new CIRC
             {
                 CartesianTarget = target, 
                 WayPoint = wayPoint,
@@ -347,7 +347,7 @@ namespace Preliy.Flange.Planner
         /// </summary>
         public void SetTool(int index)
         {
-            Task.Add(new SetToolIndex
+            Add(new SetToolIndex
             {
                 ToolIndex = index
             });
@@ -359,7 +359,7 @@ namespace Preliy.Flange.Planner
         /// <param name="milliseconds">time [ms]</param>
         public void Wait(int milliseconds)
         {
-            Task.Add(new Wait
+            Add(new Wait
             {
                 Time = milliseconds
             });
@@ -371,7 +371,7 @@ namespace Preliy.Flange.Planner
         /// <param name="condition">condition</param>
         public void WaitUntil(Func<bool> condition)
         {
-            Task.Add(new WaitCondition
+            Add(new WaitCondition
             {
                 Condition = condition
             });
@@ -383,7 +383,7 @@ namespace Preliy.Flange.Planner
         /// <param name="action">Action</param>
         public void Action(Action action)
         {
-            Task.Add(new ActionExecutor
+            Add(new ActionExecutor
             {
                 Action = action
             });
@@ -396,7 +396,7 @@ namespace Preliy.Flange.Planner
         /// <param name="value">value</param>
         public void Action<T>(UnityEvent<T> unityEvent, T value)
         {
-            Task.Add(new UnityEventInstruction<T>
+            Add(new UnityEventInstruction<T>
             {
                 UnityEvent = unityEvent,
                 Value = value

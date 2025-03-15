@@ -10,14 +10,14 @@ using UnityEngine;
 namespace Preliy.Flange.Planner.RawInstructions
 {
     [RequireComponent(typeof(Controller))]
-    public class SequenceExecutor : MonoBehaviour
+    public class MainTaskExecutor : MonoBehaviour
     {
         public IProperty<ExecutionState> State => _state;
         
         [SerializeField]
         private Property<ExecutionState> _state = new (ExecutionState.Idle);
         [SerializeField]
-        private Property<Program> _sequence = new (null);
+        private Property<Task> _task = new (null);
         [SerializeField]
         private Property<bool> _autoStart = new (false);
         [SerializeField]
@@ -52,7 +52,7 @@ namespace Preliy.Flange.Planner.RawInstructions
         {
             if (!Application.isPlaying) return;
 
-            if (_sequence.Value == null)
+            if (_task.Value == null)
             {
                 Logger.Log(LogType.Error, "Sequence reference is null", this);
                 return;
@@ -66,7 +66,7 @@ namespace Preliy.Flange.Planner.RawInstructions
                 return;
             }
 
-            if (_sequence == null)
+            if (_task == null)
             {
                 Logger.Log(LogType.Error, "Sequence reference is null", this);
                 CancelExecution();
@@ -97,7 +97,7 @@ namespace Preliy.Flange.Planner.RawInstructions
             try
             {
                 _state.Value = ExecutionState.Busy;
-                await _sequence.Value.Execute(PlayerLoopTiming.FixedUpdate, _cancellationTokenSource.Token);
+                await _task.Value.Execute(PlayerLoopTiming.FixedUpdate, _cancellationTokenSource.Token);
                 _state.Value = ExecutionState.Done;
             }
             catch (Exception e) when (e is not OperationCanceledException)

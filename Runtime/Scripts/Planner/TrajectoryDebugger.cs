@@ -2,7 +2,6 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
-using Preliy.Flange.Planner.RawInstructions;
 using UnityEngine;
 
 namespace Preliy.Flange.Planner
@@ -10,7 +9,7 @@ namespace Preliy.Flange.Planner
     public class TrajectoryDebugger : MonoBehaviour
     {
         [SerializeField]
-        private Program _sequence;
+        private Task _task;
         
         [Header("Gizmos")]
         [SerializeField]
@@ -20,9 +19,9 @@ namespace Preliy.Flange.Planner
         {
 #if UNITY_EDITOR
             if (!_config.Enable) return;
-            if (_sequence == null) return;
+            if (_task == null) return;
 
-            foreach (var motion in _sequence.Task.Motions)
+            foreach (var motion in _task.Motions)
             {
                 motion.Trajectory?.DrawGizmos(_config);
             }

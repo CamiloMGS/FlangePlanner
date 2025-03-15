@@ -11,15 +11,15 @@ using UnityEngine.UIElements;
 
 namespace Preliy.Flange.Planner.Editor
 {
-    [CustomEditor(typeof(Program), true)]
+    [CustomEditor(typeof(Task), true)]
     public class RobotProgramInspector : UnityEditor.Editor
     {
-        private Program _program;
+        private Task _program;
         private VisualElement _instructionListContainer;
 
         private void OnEnable()
         {
-            _program = target as Program;
+            _program = target as Task;
         }
 
         public override VisualElement CreateInspectorGUI()
@@ -39,7 +39,7 @@ namespace Preliy.Flange.Planner.Editor
         
         private void CompileButtonClick()
         {
-            _program.Compile(new CancellationToken()).Forget();
+            _program.Plan(new CancellationToken()).Forget();
         }
     }
 }

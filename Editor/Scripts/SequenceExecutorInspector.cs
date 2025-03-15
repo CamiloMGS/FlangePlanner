@@ -10,22 +10,22 @@ using UnityEngine.UIElements;
 
 namespace Preliy.Flange.Planner.Editor
 {
-    [CustomEditor(typeof(SequenceExecutor))]
+    [CustomEditor(typeof(MainTaskExecutor))]
     public class SequenceExecutorInspector : UnityEditor.Editor
     {
         private const string USS = "USS/Inspector";
         private Label _stateLabel;
         
-        private SequenceExecutor _sequenceExecutor;
+        private MainTaskExecutor _mainTaskExecutor;
 
         private void OnEnable()
         {
-            _sequenceExecutor = target as SequenceExecutor;
+            _mainTaskExecutor = target as MainTaskExecutor;
         }
         
         private void OnDisable()
         {
-            _sequenceExecutor.State.Unsubscribe(SetStateText);
+            _mainTaskExecutor.State.Unsubscribe(SetStateText);
         }
         
         public override VisualElement CreateInspectorGUI()
@@ -35,7 +35,7 @@ namespace Preliy.Flange.Planner.Editor
             container.styleSheets.Add(Resources.Load<StyleSheet>(USS));
             _stateLabel = new Label
             {
-                text = $"State: {_sequenceExecutor.State.Value.ToString()}",
+                text = $"State: {_mainTaskExecutor.State.Value.ToString()}",
                 style = { unityFontStyleAndWeight = new StyleEnum<FontStyle>(FontStyle.Bold)}
             };
             _stateLabel.AddToClassList("unity-base-field");
@@ -45,17 +45,17 @@ namespace Preliy.Flange.Planner.Editor
             var autoStartField = new PropertyField(serializedObject.FindProperty("_autoStart").FindPropertyRelative("value"), "Auto Start");
             var loopField = new PropertyField(serializedObject.FindProperty("_loop").FindPropertyRelative("value"), "Loop");
 
-            var executeButton = new Button(() => _sequenceExecutor.Execute())
+            var executeButton = new Button(() => _mainTaskExecutor.Execute())
             {
                 text = "Execute"
             };
             
-            var resetButton = new Button(() => _sequenceExecutor.ResetError())
+            var resetButton = new Button(() => _mainTaskExecutor.ResetError())
             {
                 text = "Reset"
             };
             
-            var stopButton = new Button(() => _sequenceExecutor.Stop())
+            var stopButton = new Button(() => _mainTaskExecutor.Stop())
             {
                 text = "Stop",
                 style = { backgroundColor = new StyleColor(new Color(0.5f, 0.15f, 0.15f))}
@@ -69,12 +69,12 @@ namespace Preliy.Flange.Planner.Editor
             container.Add(resetButton);
             container.Add(stopButton);
             
-            _sequenceExecutor.State.Subscribe(SetStateText);
+            _mainTaskExecutor.State.Subscribe(SetStateText);
             
             return container;
         }
         
-        private void SetStateText(SequenceExecutor.ExecutionState state)
+        private void SetStateText(MainTaskExecutor.ExecutionState state)
         {
             _stateLabel.text = $"State: {state.ToString()}";
         }

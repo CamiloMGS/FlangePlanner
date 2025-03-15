@@ -13,7 +13,7 @@ namespace Preliy.Flange.Planner
 {
     public static class MotionPlanner
     {
-        public static async UniTask Plan(Controller controller, Task task, CancellationToken cancellationToken = default)
+        public static async UniTask Plan(Task task, CancellationToken cancellationToken = default)
         {
             task.IsValid = false;
             cancellationToken.ThrowIfCancellationRequested();
@@ -24,7 +24,10 @@ namespace Preliy.Flange.Planner
 
             try
             {
-                Sequence(controller, task);
+                Initialize(task.Controller, task.Instructions);
+                InitializeMotions(task.Motions);
+                CreateTrajectory(task.Controller, task.Motions);
+                BlendTrajectory(task.Controller, task.Motions);
             }
             finally
             {
@@ -34,14 +37,7 @@ namespace Preliy.Flange.Planner
             cancellationToken.ThrowIfCancellationRequested();
             task.IsValid = true;
         }
-
-        private static void Sequence(Controller controller, Task task)
-        {
-            Initialize(controller, task.Instructions);
-            InitializeMotions(controller, task.Motions);
-            CreateTrajectory(controller, task.Motions);
-            BlendTrajectory(controller, task.Motions);
-        }
+        
         private static void BlendTrajectory(Controller controller, IReadOnlyList<Motion> motions)
         {
             var sequences = new List<MotionSequence>();
@@ -87,7 +83,7 @@ namespace Preliy.Flange.Planner
             }
         }
         
-        private static void InitializeMotions(Controller controller, IReadOnlyList<Motion> motions)
+        private static void InitializeMotions(IReadOnlyList<Motion> motions)
         {
             if (motions.Count <= 0) return;
             if (motions[0] is not JointMotion)
