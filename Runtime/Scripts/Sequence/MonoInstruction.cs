@@ -35,6 +35,8 @@ namespace Preliy.Flange.Planner.Sequence
 
         private const string FORMAT = "{0} [{1}]: {2}";
 
+        public abstract void Initialize();
+        
         public void OnValidate()
         {
             name = string.Format(FORMAT, _index, GetType().Name, GetDescription());

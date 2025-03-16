@@ -16,7 +16,7 @@ public class TutorialCIRC : Task
     [SerializeField]
     private SceneCartesianTarget _waypoint;
     
-    protected override void Sequence()
+    protected override void Create()
     {
         PTP(_start);
         CIRC(_target, _waypoint, 0.1f);

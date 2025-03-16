@@ -14,7 +14,7 @@ public class TutorialPTP : Task
     [SerializeField]
     private Vector3 _corner;
     
-    protected override void Sequence()
+    protected override void Create()
     {
         PTP(_target);
         PTPRel(_target, new Vector3(_corner.x, _corner.y, _corner.z), speed: 0.1f, blending: 0.15f);

@@ -65,7 +65,7 @@ namespace Preliy.Flange.Planner
         [SerializeReference]
         private List<Motion> _motions = new ();
 
-        protected abstract void Sequence();
+        protected abstract void Create();
         
         public async UniTask Plan(CancellationToken cancellationToken)
         {
@@ -74,7 +74,7 @@ namespace Preliy.Flange.Planner
             try
             {
                 Clear();
-                Sequence();
+                Create();
                 await MotionPlanner.Plan(this, cancellationToken);
             }
             catch (Exception exception)

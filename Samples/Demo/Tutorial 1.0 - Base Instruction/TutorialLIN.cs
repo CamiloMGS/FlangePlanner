@@ -12,7 +12,7 @@ public class TutorialLIN : Task
     [SerializeField]
     private SceneCartesianTarget _target;
     
-    protected override void Sequence()
+    protected override void Create()
     {
         PTP(_target);
         PTPRel(_target, new Vector3(0.3f, 0.2f, 0.3f));

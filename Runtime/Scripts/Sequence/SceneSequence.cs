@@ -5,28 +5,27 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Preliy.Flange.Planner.RawInstructions;
 using UnityEngine;
 
 namespace Preliy.Flange.Planner.Sequence
 {
-    [ExecuteInEditMode]
-    public class Sequence : MonoBehaviour
+    public class SceneSequence : Task
     {
-        public Task Task => _task;
-        
-        [SerializeField]
-        protected Controller _controller;
-        [SerializeField]
-        private Task _task;
+        protected override void Create()
+        {
+            foreach (var monoInstruction in _monoInstructions)
+            {
+                monoInstruction.Initialize();
+                Add(monoInstruction.Instruction);
+            }
+        }
         
         [SerializeField]
         [SerializeReference]
-        private List<MonoInstruction> _instructions = new ();
-
+        private List<MonoInstruction> _monoInstructions = new ();
         private void Reset()
         {
-           
+            Refresh();
         }
 
         private void OnValidate()
@@ -36,14 +35,14 @@ namespace Preliy.Flange.Planner.Sequence
 
         public void Refresh()
         {
-            _instructions.Clear();
-            _instructions = GetComponentsInChildren<MonoInstruction>().ToList();
+            _monoInstructions.Clear();
+            _monoInstructions = GetComponentsInChildren<MonoInstruction>().ToList();
             
-            for (var i = 0; i < _instructions.Count; i++)
+            for (var i = 0; i < _monoInstructions.Count; i++)
             {
-                _instructions[i].Controller = _controller;
-                _instructions[i].Index = i;
-                _instructions[i].OnValidate();
+                _monoInstructions[i].Controller = _controller;
+                _monoInstructions[i].Index = i;
+                _monoInstructions[i].OnValidate();
             }
         }
 
@@ -51,7 +50,5 @@ namespace Preliy.Flange.Planner.Sequence
         {
             Refresh();
         }
-        
-        
     }
 }

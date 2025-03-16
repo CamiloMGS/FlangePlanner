@@ -16,7 +16,7 @@ public class TutorialExternalUnit : Task
     [SerializeField]
     private List<SceneCartesianTarget> _targets;
     
-    protected override void Sequence()
+    protected override void Create()
     {
         PTP(_home, speed: 1, blending: 0.4f, tool: 1);
 

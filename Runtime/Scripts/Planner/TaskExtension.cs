@@ -7,7 +7,6 @@ using UnityEngine;
 using UnityEngine.Events;
 using Preliy.Flange.Planner.RawInstructions;
 using Preliy.Flange.Planner.Sequence;
-using PTPJointTarget = Preliy.Flange.Planner.RawInstructions.PTPJointTarget;
 
 namespace Preliy.Flange.Planner
 {
@@ -36,7 +35,7 @@ namespace Preliy.Flange.Planner
         // ReSharper disable once InconsistentNaming
         public void PTP(CartesianTarget target, float speed = 1f, int tool = -1, int frame = (int)CoordinateSystem.Base, float blending = -1f)
         {
-            Add(new PTPCartesianTarget
+            Add(new RawInstructions.PTPCartesianTarget
             {
                 CartesianTarget = target,
                 Tool = tool,
@@ -55,7 +54,7 @@ namespace Preliy.Flange.Planner
         // ReSharper disable once InconsistentNaming
         public void PTP(JointTarget target, float speed = 1f, float blending = -1f)
         {
-            Add(new PTPJointTarget
+            Add(new RawInstructions.PTPJointTarget
             {
                 JointTarget = target,
                 Speed = speed,

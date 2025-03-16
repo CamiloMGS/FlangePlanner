@@ -35,8 +35,6 @@ namespace Preliy.Flange.Planner.RawInstructions
         private int _tool;
         [SerializeField]
         private int _frame;
-        
-        protected new const string SHORT_TYPE = "PTP";
 
         public override void Plan()
         {

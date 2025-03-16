@@ -13,7 +13,7 @@ using UnityEditor;
 namespace Preliy.Flange.Planner.Sequence
 {
     // ReSharper disable once InconsistentNaming
-    public class PTP : MonoInstruction
+    public class PTPCartesianTarget : MonoInstruction
     {
         public override Instruction Instruction => _jointMotion;
         
@@ -35,6 +35,7 @@ namespace Preliy.Flange.Planner.Sequence
             set => _frame = value;
         }
 
+        [Header("Instruction Parameters")]
         [SerializeField]
         private SceneCartesianTarget _sceneCartesianTarget;
         [SerializeField]
@@ -58,13 +59,13 @@ namespace Preliy.Flange.Planner.Sequence
         private float _gizmosScale = 1f;
 
         [SerializeField]
-        private JointMotion _jointMotion = new PTPCartesianTarget();
+        private JointMotion _jointMotion = new RawInstructions.PTPCartesianTarget();
 
-        private void Refresh()
+        public override void Initialize()
         {
             _exception.Value = null;
             _cartesianTarget.Pose = transform.GetMatrix();
-            _jointMotion = new PTPCartesianTarget
+            _jointMotion = new RawInstructions.PTPCartesianTarget
             {
                 CartesianTarget = _sceneCartesianTarget != null ? _sceneCartesianTarget.Target : _cartesianTarget,
                 Tool = _tool,
@@ -87,7 +88,8 @@ namespace Preliy.Flange.Planner.Sequence
         {
             try
             {
-                Refresh();
+                Initialize();
+                _jointMotion.Initialize(_controller, _index);
                 _jointMotion.Plan();
                 _jointMotion.JumpToTarget();
             }
