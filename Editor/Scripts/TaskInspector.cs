@@ -1,0 +1,45 @@
+﻿// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+using System.Threading;
+using Cysharp.Threading.Tasks;
+using Preliy.Flange.Planner.RawInstructions;
+using UnityEditor;
+using UnityEditor.UIElements;
+using UnityEngine.UIElements;
+
+namespace Preliy.Flange.Planner.Editor
+{
+    [CustomEditor(typeof(Task), true)]
+    public class TaskInspector : UnityEditor.Editor
+    {
+        private Task _task;
+        private VisualElement _instructionListContainer;
+
+        private void OnEnable()
+        {
+            _task = target as Task;
+        }
+
+        public override VisualElement CreateInspectorGUI()
+        {
+            var container = new VisualElement();
+            InspectorElement.FillDefaultInspector(container, serializedObject, this);
+
+            var buttonCompile = new Button(CompileButtonClick)
+            {
+                text = "Compile"
+            };
+            
+            container.Add(buttonCompile);
+            
+            return container;
+        }
+        
+        private void CompileButtonClick()
+        {
+            _task.Plan(new CancellationToken()).Forget();
+        }
+    }
+}

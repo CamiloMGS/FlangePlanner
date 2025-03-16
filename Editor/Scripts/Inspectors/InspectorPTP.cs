@@ -4,6 +4,7 @@
 
 using System;
 using Preliy.Flange.Editor;
+using Preliy.Flange.Planner.Sequence;
 using UnityEditor;
 using UnityEditor.UIElements;
 using UnityEngine;
@@ -13,13 +14,13 @@ using Object = UnityEngine.Object;
 namespace Preliy.Flange.Planner.Editor
 {
     [CanEditMultipleObjects]
-    [CustomEditor(typeof(PTP))]
+    [CustomEditor(typeof(PTPCartesianTarget))]
     // ReSharper disable once InconsistentNaming
     public class InspectorPTP : UnityEditor.Editor
     {
         private const string UXML = "UXML/InspectorPTP";
 
-        private PTP _instruction;
+        private PTPCartesianTarget _instruction;
         private VisualElement _stateContainer;
         private ObjectField _cartesianTargetReference;
         private PropertyField _cartesianConfiguration;
@@ -29,7 +30,7 @@ namespace Preliy.Flange.Planner.Editor
 
         private void OnEnable()
         {
-            _instruction = target as PTP;
+            _instruction = target as PTPCartesianTarget;
         }
 
         public override VisualElement CreateInspectorGUI()

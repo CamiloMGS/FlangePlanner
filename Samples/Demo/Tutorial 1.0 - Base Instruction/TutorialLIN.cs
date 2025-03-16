@@ -3,15 +3,16 @@
 // file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 using Preliy.Flange.Planner;
-using Preliy.Flange.Planner.Instructions;
+using Preliy.Flange.Planner.RawInstructions;
+using Preliy.Flange.Planner.Sequence;
 using UnityEngine;
 
-public class TutorialLIN : Sequence
+public class TutorialLIN : Task
 {
     [SerializeField]
     private SceneCartesianTarget _target;
     
-    protected override void Program()
+    protected override void Create()
     {
         PTP(_target);
         PTPRel(_target, new Vector3(0.3f, 0.2f, 0.3f));

@@ -2,7 +2,8 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
-using Preliy.Flange.Planner.Instructions;
+using Preliy.Flange.Planner.RawInstructions;
+using Preliy.Flange.Planner.Sequence;
 using UnityEditor;
 using UnityEditor.Overlays;
 using UnityEngine;

@@ -3,10 +3,11 @@
 // file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 using Preliy.Flange.Planner;
-using Preliy.Flange.Planner.Instructions;
+using Preliy.Flange.Planner.RawInstructions;
+using Preliy.Flange.Planner.Sequence;
 using UnityEngine;
 
-public class TutorialCIRC : Sequence
+public class TutorialCIRC : Task
 {
     [SerializeField]
     private SceneCartesianTarget _start;
@@ -15,7 +16,7 @@ public class TutorialCIRC : Sequence
     [SerializeField]
     private SceneCartesianTarget _waypoint;
     
-    protected override void Program()
+    protected override void Create()
     {
         PTP(_start);
         CIRC(_target, _waypoint, 0.1f);

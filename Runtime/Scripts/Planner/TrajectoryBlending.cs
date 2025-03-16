@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Preliy.Flange.Planner;
 using UnityEngine;
-using Motion = Preliy.Flange.Planner.Instructions.Motion;
+using Motion = Preliy.Flange.Planner.RawInstructions.Motion;
 
 namespace Preliy.Flange
 {

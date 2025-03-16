@@ -4,10 +4,11 @@
 
 using System.Collections.Generic;
 using Preliy.Flange.Planner;
-using Preliy.Flange.Planner.Instructions;
+using Preliy.Flange.Planner.RawInstructions;
+using Preliy.Flange.Planner.Sequence;
 using UnityEngine;
 
-public class TutorialExternalUnit : Sequence
+public class TutorialExternalUnit : Task
 {
     [SerializeField]
     private SceneCartesianTarget _home;
@@ -15,7 +16,7 @@ public class TutorialExternalUnit : Sequence
     [SerializeField]
     private List<SceneCartesianTarget> _targets;
     
-    protected override void Program()
+    protected override void Create()
     {
         PTP(_home, speed: 1, blending: 0.4f, tool: 1);
 

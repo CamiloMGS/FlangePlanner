@@ -9,7 +9,7 @@ using UnityEngine;
 namespace Preliy.Flange.Planner
 {
     [Serializable]
-    public class RampTrapezoidal : IRamp
+    public class RampTrapezoidal
     {
         public List<RampKey> Keys => _keys;
         public float Duration => _duration;

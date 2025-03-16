@@ -6,14 +6,14 @@ using System;
 using System.Collections.Generic;
 using System.Threading;
 using Cysharp.Threading.Tasks;
-using Preliy.Flange.Planner.Instructions;
-using Motion = Preliy.Flange.Planner.Instructions.Motion;
+using Preliy.Flange.Planner.RawInstructions;
+using Motion = Preliy.Flange.Planner.RawInstructions.Motion;
 
 namespace Preliy.Flange.Planner
 {
     public static class MotionPlanner
     {
-        public static async UniTask Plan(Controller controller, Task task, CancellationToken cancellationToken = default)
+        public static async UniTask Plan(Task task, CancellationToken cancellationToken = default)
         {
             task.IsValid = false;
             cancellationToken.ThrowIfCancellationRequested();
@@ -24,7 +24,10 @@ namespace Preliy.Flange.Planner
 
             try
             {
-                Sequence(controller, task);
+                Plan(task.Instructions);
+                InitializeMotions(task.Motions);
+                CreateTrajectory(task.Controller, task.Motions);
+                BlendTrajectory(task.Controller, task.Motions);
             }
             finally
             {
@@ -34,14 +37,7 @@ namespace Preliy.Flange.Planner
             cancellationToken.ThrowIfCancellationRequested();
             task.IsValid = true;
         }
-
-        private static void Sequence(Controller controller, Task task)
-        {
-            Initialize(controller, task.Instructions);
-            InitializeMotions(controller, task.Motions);
-            CreateTrajectory(controller, task.Motions);
-            BlendTrajectory(controller, task.Motions);
-        }
+        
         private static void BlendTrajectory(Controller controller, IReadOnlyList<Motion> motions)
         {
             var sequences = new List<MotionSequence>();
@@ -69,7 +65,7 @@ namespace Preliy.Flange.Planner
             }
         }
 
-        private static void Initialize(Controller controller, IList<Instruction> instructions)
+        private static void Plan(IList<Instruction> instructions)
         {
             if (instructions == null)
             {
@@ -81,13 +77,13 @@ namespace Preliy.Flange.Planner
                 throw new Exception("Instruction list is empty");
             }
 
-            for (var i = 0; i < instructions.Count; i++)
+            foreach (var instruction in instructions)
             {
-                instructions[i].Plan(controller, i);
+                instruction.Plan();
             }
         }
         
-        private static void InitializeMotions(Controller controller, IReadOnlyList<Motion> motions)
+        private static void InitializeMotions(IReadOnlyList<Motion> motions)
         {
             if (motions.Count <= 0) return;
             if (motions[0] is not JointMotion)

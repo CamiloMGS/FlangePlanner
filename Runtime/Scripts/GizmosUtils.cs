@@ -2,7 +2,7 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
-using Preliy.Flange.Planner.Instructions;
+using Preliy.Flange.Planner.RawInstructions;
 using UnityEditor;
 using UnityEngine;
 
@@ -45,7 +45,7 @@ namespace Preliy.Flange.Planner
             );
         }
 
-        public static void DrawSegment(Controller controller, Instructions.Motion start, Instructions.Motion target, Color colorLine, float scale = 1f)
+        public static void DrawSegment(Controller controller, RawInstructions.Motion start, RawInstructions.Motion target, Color colorLine, float scale = 1f)
         {
             var p0 = start.GetTargetWorld(controller).GetPosition();
             var p1 = target.GetTargetWorld(controller).GetPosition();
@@ -68,7 +68,7 @@ namespace Preliy.Flange.Planner
             }
         }
 
-        public static void DrawMotionTarget(Controller controller, Instructions.Motion instruction, Color color, float scale = 1f, bool description = false, bool blendZone = false)
+        public static void DrawMotionTarget(Controller controller, RawInstructions.Motion instruction, Color color, float scale = 1f, bool description = false, bool blendZone = false)
         {
             var target = instruction.GetTargetWorld(controller); 
             var position = target.GetPosition();
@@ -77,7 +77,7 @@ namespace Preliy.Flange.Planner
             Gizmos.DrawSphere(position, 0.01f * scale);
 
             var labelPosition = position + Vector3.down * 0.04f * scale;
-            Handles.Label(labelPosition, description ? $"{instruction.Name} \n{instruction.Name}" : instruction.Name);
+            Handles.Label(labelPosition, description ? $"{instruction} \n{instruction.ToDescription()}" : instruction.ToString());
 
             if (blendZone && instruction.Blending > Math.TOLERANCE_FLOAT)
             {

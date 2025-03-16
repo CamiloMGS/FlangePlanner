@@ -16,7 +16,7 @@ namespace Preliy.Flange.Planner.Editor
         private MultiColumnListView _columnListView;
         private readonly VisualElement _content;
 
-        private Instructions.Task _task;
+        private Task _task;
 
         private SerializedObject _serializedObject;
 
@@ -41,7 +41,7 @@ namespace Preliy.Flange.Planner.Editor
             _columnListView.Bind(_serializedObject);
         }
 
-        public void Bind(Instructions.Task task)
+        public void Bind(Task task)
         {
             _task = task;
             _task.OnInstructionsListChanged += OnInstructionsListChanged;
