@@ -12,7 +12,7 @@ using UnityEngine;
 public class TutorialLinearUnit : Task
 {
     [SerializeField]
-    private CartesianTarget _home;
+    private SceneCartesianTarget _home;
     
     [SerializeField]
     private List<SceneCartesianTarget> _targets;
