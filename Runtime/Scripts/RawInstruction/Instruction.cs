@@ -15,6 +15,7 @@ namespace Preliy.Flange.Planner.RawInstructions
         public string Name => name;
         public int Index => _index;
         public InstructionState State => _state;
+        public Controller Controller => _controller;
 
         [SerializeField]
         // ReSharper disable once InconsistentNaming
@@ -39,7 +40,7 @@ namespace Preliy.Flange.Planner.RawInstructions
 
         public virtual void Plan()
         {
-            if (_state != InstructionState.Idle) throw new Exception("State is not Idle");
+            if (_state != InstructionState.Idle) throw new Exception($"{name}: State is not Idle");
         }
 
         public abstract UniTask Execute(PlayerLoopTiming playerLoopTiming, CancellationToken cancellationToken);

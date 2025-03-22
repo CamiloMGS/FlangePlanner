@@ -133,7 +133,19 @@ GameObject:
   - component: {fileID: 89941078}
   - component: {fileID: 89941079}
   m_Layer: 0
-  m_Name: '0 [PTPCartesianTarget]: T:0 F:0 S:1 B:0'
+  m_Name: '0 [PTPCartesianTarget]: R: -16.64, 13.315, 16.541, 0, 60.143, -106.64
+
+    E:
+    8.999999E+09, 8.999999E+09, 8.999999E+09, 8.999999E+09, 8.999999E+09, 8.999999E+09
+
+    S:
+    0.1
+
+    B: 0
+
+    T: 0
+
+    F: 0'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -148,7 +160,7 @@ Transform:
   m_GameObject: {fileID: 89941077}
   serializedVersion: 2
   m_LocalRotation: {x: 0.7071065, y: 0.000000115903866, z: 0.7071071, w: 0.00000011590378}
-  m_LocalPosition: {x: -0.149, y: 1.011, z: 1.596}
+  m_LocalPosition: {x: 0.477, y: 1.011, z: 1.596}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -166,44 +178,63 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e7e5634328d37b419c1165e2976d9f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _controller: {fileID: 1088766306}
-  _index: 0
   _sceneCartesianTarget: {fileID: 0}
-  _cartesianTarget:
-    _object: {fileID: 0}
-    _pose:
-      e00: -0.0000009536743
-      e01: -2.842171e-14
-      e02: 1
-      e03: -0.149
-      e10: 0.00000032782552
-      e11: -1
-      e12: 2.7000624e-13
-      e13: 1.011
-      e20: 1
-      e21: 0.00000032782555
-      e22: 0.0000008940697
-      e23: 1.596
-      e30: 0
-      e31: 0
-      e32: 0
-      e33: 1
-    _configuration:
-      _turn1: 0
-      _turn4: 0
-      _turn6: 0
-      _index: 0
-    _extJoint:
-      _e1: 9e+9
-      _e2: 9e+9
-      _e3: 9e+9
-      _e4: 9e+9
-      _e5: 9e+9
-      _e6: 9e+9
-  _tool: 0
-  _frame: 0
-  _speed: 1
-  _blending: 0
+  _instruction:
+    name: 0 PTP
+    _controller: {fileID: 1088766306}
+    _index: 0
+    _state: 1
+    _speed: 0.1
+    _blending: 0
+    _isTempJob: 1
+    _jointTarget:
+      _robJoint:
+        _r1: -16.64
+        _r2: 13.315
+        _r3: 16.541
+        _r4: 0
+        _r5: 60.143
+        _r6: -106.64
+      _extJoint:
+        _e1: 9e+9
+        _e2: 9e+9
+        _e3: 9e+9
+        _e4: 9e+9
+        _e5: 9e+9
+        _e6: 9e+9
+    _cartesianTarget:
+      _object: {fileID: 0}
+      _pose:
+        e00: -0.0000009536743
+        e01: -2.842171e-14
+        e02: 1
+        e03: 0.477
+        e10: 0.00000032782552
+        e11: -1
+        e12: 2.7000624e-13
+        e13: 1.011
+        e20: 1
+        e21: 0.00000032782555
+        e22: 0.0000008940697
+        e23: 1.596
+        e30: 0
+        e31: 0
+        e32: 0
+        e33: 1
+      _configuration:
+        _turn1: 0
+        _turn4: 0
+        _turn6: 0
+        _index: 0
+      _extJoint:
+        _e1: 9e+9
+        _e2: 9e+9
+        _e3: 9e+9
+        _e4: 9e+9
+        _e5: 9e+9
+        _e6: 9e+9
+    _tool: 0
+    _frame: 0
   _showGizmos: 1
   _showLabel: 1
   _gizmosScale: 1
@@ -238,9 +269,10 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 89941078}
-  - {fileID: 717871180}
-  - {fileID: 705412964}
-  - {fileID: 1381414568}
+  - {fileID: 1438163204}
+  - {fileID: 607535358}
+  - {fileID: 1864583806}
+  - {fileID: 1907438840}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &337342961
@@ -257,11 +289,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _isValid: 1
   _controller: {fileID: 1088766306}
-  _instructions:
-  - rid: 7549459423203688549
-  - rid: 7549459423203688550
-  - rid: 7549459423203688551
-  - rid: 7549459423203688552
   _alwaysCompile: 0
   _verbose: 0
   _taskGizmosConfig:
@@ -272,426 +299,128 @@ MonoBehaviour:
     _showBlendZone: 0
     _showDescription: 0
     _showTrajectory: 0
-  _duration: 0
-  _motions:
-  - rid: 7549459423203688549
-  - rid: 7549459423203688550
-  - rid: 7549459423203688551
-  - rid: 7549459423203688552
   _monoInstructions:
   - {fileID: 89941079}
-  - {fileID: 717871179}
-  - {fileID: 705412963}
-  - {fileID: 1381414567}
-  references:
-    version: 2
-    RefIds:
-    - rid: 7549459423203688549
-      type: {class: PTPCartesianTarget, ns: Preliy.Flange.Planner.RawInstructions,
-        asm: Preliy.Flange.Planner}
-      data:
-        name: 0 PTP
-        _controller: {fileID: 1088766306}
+  - {fileID: 1438163205}
+  - {fileID: 607535359}
+  - {fileID: 1864583807}
+  - {fileID: 1907438841}
+--- !u!1 &607535357
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 607535358}
+  - component: {fileID: 607535359}
+  m_Layer: 0
+  m_Name: '2 [PTPCartesianTarget]: R: 20.556, 15.331, 14.044, 0, 60.625, -69.444
+
+    E:
+    8.999999E+09, 8.999999E+09, 8.999999E+09, 8.999999E+09, 8.999999E+09, 8.999999E+09
+
+    S:
+    0.1
+
+    B: 0
+
+    T: 0
+
+    F: 0'
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &607535358
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 607535357}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.7071065, y: 0.000000115903866, z: 0.7071071, w: 0.00000011590378}
+  m_LocalPosition: {x: -0.6, y: 1.011, z: 1.6}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 337342960}
+  m_LocalEulerAnglesHint: {x: 180, y: -90, z: 0}
+--- !u!114 &607535359
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 607535357}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e7e5634328d37b419c1165e2976d9f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sceneCartesianTarget: {fileID: 0}
+  _instruction:
+    name: 2 PTP
+    _controller: {fileID: 1088766306}
+    _index: 2
+    _state: 1
+    _speed: 0.1
+    _blending: 0
+    _isTempJob: 0
+    _jointTarget:
+      _robJoint:
+        _r1: 20.556
+        _r2: 15.331
+        _r3: 14.044
+        _r4: 0
+        _r5: 60.625
+        _r6: -69.444
+      _extJoint:
+        _e1: 9e+9
+        _e2: 9e+9
+        _e3: 9e+9
+        _e4: 9e+9
+        _e5: 9e+9
+        _e6: 9e+9
+    _cartesianTarget:
+      _object: {fileID: 0}
+      _pose:
+        e00: -0.0000009536743
+        e01: -2.842171e-14
+        e02: 1
+        e03: -0.6
+        e10: 0.00000032782552
+        e11: -1
+        e12: 2.7000624e-13
+        e13: 1.011
+        e20: 1
+        e21: 0.00000032782555
+        e22: 0.0000008940697
+        e23: 1.6
+        e30: 0
+        e31: 0
+        e32: 0
+        e33: 1
+      _configuration:
+        _turn1: 0
+        _turn4: 0
+        _turn6: 0
         _index: 0
-        _state: 1
-        _speed: 1
-        _blending: 0
-        _isTempJob: 1
-        _jointTarget:
-          _robJoint:
-            _r1: 5.334
-            _r2: 10.367
-            _r3: 20.077
-            _r4: 0
-            _r5: 59.557
-            _r6: -84.666
-          _extJoint:
-            _e1: 9e+9
-            _e2: 9e+9
-            _e3: 9e+9
-            _e4: 9e+9
-            _e5: 9e+9
-            _e6: 9e+9
-        _cartesianTarget:
-          _object: {fileID: 0}
-          _pose:
-            e00: -0.0000009536743
-            e01: -2.842171e-14
-            e02: 1
-            e03: -0.149
-            e10: 0.00000032782552
-            e11: -1
-            e12: 2.7000624e-13
-            e13: 1.011
-            e20: 1
-            e21: 0.00000032782555
-            e22: 0.0000008940697
-            e23: 1.596
-            e30: 0
-            e31: 0
-            e32: 0
-            e33: 1
-          _configuration:
-            _turn1: 0
-            _turn4: 0
-            _turn6: 0
-            _index: 0
-          _extJoint:
-            _e1: 9e+9
-            _e2: 9e+9
-            _e3: 9e+9
-            _e4: 9e+9
-            _e5: 9e+9
-            _e6: 9e+9
-        _tool: 0
-        _frame: 0
-    - rid: 7549459423203688550
-      type: {class: PTPCartesianTarget, ns: Preliy.Flange.Planner.RawInstructions,
-        asm: Preliy.Flange.Planner}
-      data:
-        name: 1 PTP
-        _controller: {fileID: 1088766306}
-        _index: 1
-        _state: 1
-        _speed: 1
-        _blending: 0
-        _isTempJob: 0
-        _jointTarget:
-          _robJoint:
-            _r1: 19.94
-            _r2: 14.815
-            _r3: 14.689
-            _r4: 0
-            _r5: 60.496
-            _r6: 19.94
-          _extJoint:
-            _e1: 9e+9
-            _e2: 9e+9
-            _e3: 9e+9
-            _e4: 9e+9
-            _e5: 9e+9
-            _e6: 9e+9
-        _cartesianTarget:
-          _object: {fileID: 0}
-          _pose:
-            e00: 1
-            e01: 0
-            e02: -0
-            e03: -0.579
-            e10: -0
-            e11: -1
-            e12: -0.00000032782552
-            e13: 1.011
-            e20: 0
-            e21: 0.00000032782552
-            e22: -1
-            e23: 1.596
-            e30: 0
-            e31: 0
-            e32: 0
-            e33: 1
-          _configuration:
-            _turn1: 0
-            _turn4: 0
-            _turn6: 0
-            _index: 0
-          _extJoint:
-            _e1: 9e+9
-            _e2: 9e+9
-            _e3: 9e+9
-            _e4: 9e+9
-            _e5: 9e+9
-            _e6: 9e+9
-        _tool: 0
-        _frame: 0
-    - rid: 7549459423203688551
-      type: {class: PTPCartesianTarget, ns: Preliy.Flange.Planner.RawInstructions,
-        asm: Preliy.Flange.Planner}
-      data:
-        name: 2 PTP
-        _controller: {fileID: 1088766306}
-        _index: 2
-        _state: 1
-        _speed: 1
-        _blending: 0
-        _isTempJob: 0
-        _jointTarget:
-          _robJoint:
-            _r1: -26.852
-            _r2: 19.085
-            _r3: 9.222
-            _r4: 0
-            _r5: 61.693
-            _r6: -26.852
-          _extJoint:
-            _e1: 9e+9
-            _e2: 9e+9
-            _e3: 9e+9
-            _e4: 9e+9
-            _e5: 9e+9
-            _e6: 9e+9
-        _cartesianTarget:
-          _object: {fileID: 0}
-          _pose:
-            e00: 1
-            e01: 0
-            e02: -0
-            e03: 0.808
-            e10: -0
-            e11: -1
-            e12: -0.00000032782552
-            e13: 1.011
-            e20: 0
-            e21: 0.00000032782552
-            e22: -1
-            e23: 1.596
-            e30: 0
-            e31: 0
-            e32: 0
-            e33: 1
-          _configuration:
-            _turn1: 0
-            _turn4: 0
-            _turn6: 0
-            _index: 0
-          _extJoint:
-            _e1: 9e+9
-            _e2: 9e+9
-            _e3: 9e+9
-            _e4: 9e+9
-            _e5: 9e+9
-            _e6: 9e+9
-        _tool: 0
-        _frame: 0
-    - rid: 7549459423203688552
-      type: {class: PTPCartesianTarget, ns: Preliy.Flange.Planner.RawInstructions,
-        asm: Preliy.Flange.Planner}
-      data:
-        name: 3 PTP
-        _controller: {fileID: 1088766306}
-        _index: 3
-        _state: 1
-        _speed: 1
-        _blending: 0
-        _isTempJob: 0
-        _jointTarget:
-          _robJoint:
-            _r1: 22.781
-            _r2: 2.578
-            _r3: 19.863
-            _r4: -105.076
-            _r5: 22.79
-            _r6: 112.491
-          _extJoint:
-            _e1: 9e+9
-            _e2: 9e+9
-            _e3: 9e+9
-            _e4: 9e+9
-            _e5: 9e+9
-            _e6: 9e+9
-        _cartesianTarget:
-          _object: {fileID: 0}
-          _pose:
-            e00: 1
-            e01: 0
-            e02: -0
-            e03: -0.579
-            e10: -0
-            e11: -0.25881964
-            e12: -0.96592605
-            e13: 1.366
-            e20: 0
-            e21: 0.96592605
-            e22: -0.25881964
-            e23: 1.596
-            e30: 0
-            e31: 0
-            e32: 0
-            e33: 1
-          _configuration:
-            _turn1: 0
-            _turn4: 0
-            _turn6: 0
-            _index: 0
-          _extJoint:
-            _e1: 9e+9
-            _e2: 9e+9
-            _e3: 9e+9
-            _e4: 9e+9
-            _e5: 9e+9
-            _e6: 9e+9
-        _tool: 0
-        _frame: 0
---- !u!1 &705412962
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 705412964}
-  - component: {fileID: 705412963}
-  m_Layer: 0
-  m_Name: '2 [PTPCartesianTarget]: T:0 F:0 S:1 B:0'
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &705412963
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 705412962}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9e7e5634328d37b419c1165e2976d9f2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _controller: {fileID: 1088766306}
-  _index: 2
-  _sceneCartesianTarget: {fileID: 0}
-  _cartesianTarget:
-    _object: {fileID: 0}
-    _pose:
-      e00: 1
-      e01: 0
-      e02: -0
-      e03: 0.808
-      e10: -0
-      e11: -1
-      e12: -0.00000032782552
-      e13: 1.011
-      e20: 0
-      e21: 0.00000032782552
-      e22: -1
-      e23: 1.596
-      e30: 0
-      e31: 0
-      e32: 0
-      e33: 1
-    _configuration:
-      _turn1: 0
-      _turn4: 0
-      _turn6: 0
-      _index: 0
-    _extJoint:
-      _e1: 9e+9
-      _e2: 9e+9
-      _e3: 9e+9
-      _e4: 9e+9
-      _e5: 9e+9
-      _e6: 9e+9
-  _tool: 0
-  _frame: 0
-  _speed: 1
-  _blending: 0
+      _extJoint:
+        _e1: 9e+9
+        _e2: 9e+9
+        _e3: 9e+9
+        _e4: 9e+9
+        _e5: 9e+9
+        _e6: 9e+9
+    _tool: 0
+    _frame: 0
   _showGizmos: 1
   _showLabel: 1
   _gizmosScale: 1
---- !u!4 &705412964
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 705412962}
-  serializedVersion: 2
-  m_LocalRotation: {x: 1, y: -0, z: -0, w: 0.00000016391276}
-  m_LocalPosition: {x: 0.808, y: 1.011, z: 1.596}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 337342960}
-  m_LocalEulerAnglesHint: {x: 180, y: 0, z: 0}
---- !u!1 &717871178
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 717871180}
-  - component: {fileID: 717871179}
-  m_Layer: 0
-  m_Name: '1 [PTPCartesianTarget]: T:0 F:0 S:1 B:0'
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &717871179
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 717871178}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9e7e5634328d37b419c1165e2976d9f2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _controller: {fileID: 1088766306}
-  _index: 1
-  _sceneCartesianTarget: {fileID: 0}
-  _cartesianTarget:
-    _object: {fileID: 0}
-    _pose:
-      e00: 1
-      e01: 0
-      e02: -0
-      e03: -0.579
-      e10: -0
-      e11: -1
-      e12: -0.00000032782552
-      e13: 1.011
-      e20: 0
-      e21: 0.00000032782552
-      e22: -1
-      e23: 1.596
-      e30: 0
-      e31: 0
-      e32: 0
-      e33: 1
-    _configuration:
-      _turn1: 0
-      _turn4: 0
-      _turn6: 0
-      _index: 0
-    _extJoint:
-      _e1: 9e+9
-      _e2: 9e+9
-      _e3: 9e+9
-      _e4: 9e+9
-      _e5: 9e+9
-      _e6: 9e+9
-  _tool: 0
-  _frame: 0
-  _speed: 1
-  _blending: 0
-  _showGizmos: 1
-  _showLabel: 1
-  _gizmosScale: 1
---- !u!4 &717871180
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 717871178}
-  serializedVersion: 2
-  m_LocalRotation: {x: 1, y: -0, z: -0, w: 0.00000016391276}
-  m_LocalPosition: {x: -0.579, y: 1.011, z: 1.596}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 337342960}
-  m_LocalEulerAnglesHint: {x: 180, y: 0, z: 0}
 --- !u!1001 &1088766296
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -703,42 +432,42 @@ PrefabInstance:
     - target: {fileID: 269403988931204778, guid: 729e2bca00e6dbb4c9ed6c0da7f055ac,
         type: 3}
       propertyPath: _position._value
-      value: 59.557
+      value: 60.143
       objectReference: {fileID: 0}
     - target: {fileID: 1030515148662577351, guid: 729e2bca00e6dbb4c9ed6c0da7f055ac,
         type: 3}
       propertyPath: _position._value
-      value: -84.666
+      value: -106.64
       objectReference: {fileID: 0}
     - target: {fileID: 1492907593852962153, guid: 729e2bca00e6dbb4c9ed6c0da7f055ac,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.07895502
+      value: -0.06548133
       objectReference: {fileID: 0}
     - target: {fileID: 1492907593852962153, guid: 729e2bca00e6dbb4c9ed6c0da7f055ac,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.21602339
+      value: 0.22048174
       objectReference: {fileID: 0}
     - target: {fileID: 1492907593852962153, guid: 729e2bca00e6dbb4c9ed6c0da7f055ac,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.69628155
+      value: 0.69975287
       objectReference: {fileID: 0}
     - target: {fileID: 1492907593852962153, guid: 729e2bca00e6dbb4c9ed6c0da7f055ac,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.12325569
+      value: -0.10171498
       objectReference: {fileID: 0}
     - target: {fileID: 1492907593852962153, guid: 729e2bca00e6dbb4c9ed6c0da7f055ac,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.123255685
+      value: -0.10171498
       objectReference: {fileID: 0}
     - target: {fileID: 1492907593852962153, guid: 729e2bca00e6dbb4c9ed6c0da7f055ac,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.6962816
+      value: 0.69975287
       objectReference: {fileID: 0}
     - target: {fileID: 1672127558990916961, guid: 729e2bca00e6dbb4c9ed6c0da7f055ac,
         type: 3}
@@ -748,27 +477,27 @@ PrefabInstance:
     - target: {fileID: 2378728066795492981, guid: 729e2bca00e6dbb4c9ed6c0da7f055ac,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.7056057
+      value: 0.70581466
       objectReference: {fileID: 0}
     - target: {fileID: 2378728066795492981, guid: 729e2bca00e6dbb4c9ed6c0da7f055ac,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.04604998
+      value: -0.04272866
       objectReference: {fileID: 0}
     - target: {fileID: 2378728066795492981, guid: 729e2bca00e6dbb4c9ed6c0da7f055ac,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.040891405
+      value: 0.037562903
       objectReference: {fileID: 0}
     - target: {fileID: 2378728066795492981, guid: 729e2bca00e6dbb4c9ed6c0da7f055ac,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.70592344
+      value: -0.7061084
       objectReference: {fileID: 0}
     - target: {fileID: 2769911672435691617, guid: 729e2bca00e6dbb4c9ed6c0da7f055ac,
         type: 3}
       propertyPath: _position._value
-      value: 10.367
+      value: 13.315
       objectReference: {fileID: 0}
     - target: {fileID: 2834435492289476357, guid: 729e2bca00e6dbb4c9ed6c0da7f055ac,
         type: 3}
@@ -778,22 +507,22 @@ PrefabInstance:
     - target: {fileID: 2834435492289476357, guid: 729e2bca00e6dbb4c9ed6c0da7f055ac,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.61373466
+      value: 0.6119307
       objectReference: {fileID: 0}
     - target: {fileID: 2834435492289476357, guid: 729e2bca00e6dbb4c9ed6c0da7f055ac,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.35118338
+      value: -0.3543173
       objectReference: {fileID: 0}
     - target: {fileID: 2834435492289476357, guid: 729e2bca00e6dbb4c9ed6c0da7f055ac,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.35118335
+      value: 0.35431728
       objectReference: {fileID: 0}
     - target: {fileID: 2834435492289476357, guid: 729e2bca00e6dbb4c9ed6c0da7f055ac,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.61373466
+      value: -0.6119308
       objectReference: {fileID: 0}
     - target: {fileID: 4637002141088260492, guid: 729e2bca00e6dbb4c9ed6c0da7f055ac,
         type: 3}
@@ -853,12 +582,12 @@ PrefabInstance:
     - target: {fileID: 5530447500276434784, guid: 729e2bca00e6dbb4c9ed6c0da7f055ac,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 5530447500276434784, guid: 729e2bca00e6dbb4c9ed6c0da7f055ac,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.7392433
+      value: 0.59734523
       objectReference: {fileID: 0}
     - target: {fileID: 5530447500276434784, guid: 729e2bca00e6dbb4c9ed6c0da7f055ac,
         type: 3}
@@ -868,32 +597,32 @@ PrefabInstance:
     - target: {fileID: 5530447500276434784, guid: 729e2bca00e6dbb4c9ed6c0da7f055ac,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.67343843
+      value: 0.80198425
       objectReference: {fileID: 0}
     - target: {fileID: 5530447500276434784, guid: 729e2bca00e6dbb4c9ed6c0da7f055ac,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5625710532158390848, guid: 729e2bca00e6dbb4c9ed6c0da7f055ac,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.1410633
+      value: 1.1288176
       objectReference: {fileID: 0}
     - target: {fileID: 5625710532158390848, guid: 729e2bca00e6dbb4c9ed6c0da7f055ac,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.20874493
+      value: 0.2671531
       objectReference: {fileID: 0}
     - target: {fileID: 5625710532158390848, guid: 729e2bca00e6dbb4c9ed6c0da7f055ac,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.7680991
+      value: 0.78431636
       objectReference: {fileID: 0}
     - target: {fileID: 5625710532158390848, guid: 729e2bca00e6dbb4c9ed6c0da7f055ac,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.640331
+      value: 0.62036103
       objectReference: {fileID: 0}
     - target: {fileID: 5625710532158390848, guid: 729e2bca00e6dbb4c9ed6c0da7f055ac,
         type: 3}
@@ -908,7 +637,7 @@ PrefabInstance:
     - target: {fileID: 5984653800019436346, guid: 729e2bca00e6dbb4c9ed6c0da7f055ac,
         type: 3}
       propertyPath: _position._value
-      value: 20.077
+      value: 16.541
       objectReference: {fileID: 0}
     - target: {fileID: 6596608973113717734, guid: 729e2bca00e6dbb4c9ed6c0da7f055ac,
         type: 3}
@@ -943,57 +672,57 @@ PrefabInstance:
     - target: {fileID: 7444495221061654403, guid: 729e2bca00e6dbb4c9ed6c0da7f055ac,
         type: 3}
       propertyPath: _position._value
-      value: 5.334
+      value: -16.64
       objectReference: {fileID: 0}
     - target: {fileID: 8513172456202673693, guid: 729e2bca00e6dbb4c9ed6c0da7f055ac,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.018592289
+      value: 0.057271462
       objectReference: {fileID: 0}
     - target: {fileID: 8513172456202673693, guid: 729e2bca00e6dbb4c9ed6c0da7f055ac,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.19913395
+      value: 0.19162458
       objectReference: {fileID: 0}
     - target: {fileID: 8513172456202673693, guid: 729e2bca00e6dbb4c9ed6c0da7f055ac,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.7063409
+      value: 0.6996647
       objectReference: {fileID: 0}
     - target: {fileID: 8513172456202673693, guid: 729e2bca00e6dbb4c9ed6c0da7f055ac,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.032902475
+      value: 0.10231947
       objectReference: {fileID: 0}
     - target: {fileID: 8513172456202673693, guid: 729e2bca00e6dbb4c9ed6c0da7f055ac,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.032902475
+      value: 0.10231947
       objectReference: {fileID: 0}
     - target: {fileID: 8513172456202673693, guid: 729e2bca00e6dbb4c9ed6c0da7f055ac,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.7063409
+      value: 0.6996647
       objectReference: {fileID: 0}
     - target: {fileID: 8554715479141467186, guid: 729e2bca00e6dbb4c9ed6c0da7f055ac,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.42041248
+      value: 0.4083987
       objectReference: {fileID: 0}
     - target: {fileID: 8554715479141467186, guid: 729e2bca00e6dbb4c9ed6c0da7f055ac,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.5717064
+      value: 0.5803196
       objectReference: {fileID: 0}
     - target: {fileID: 8554715479141467186, guid: 729e2bca00e6dbb4c9ed6c0da7f055ac,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.5681591
+      value: 0.57688457
       objectReference: {fileID: 0}
     - target: {fileID: 8554715479141467186, guid: 729e2bca00e6dbb4c9ed6c0da7f055ac,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.41665366
+      value: 0.40452936
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1167,12 +896,12 @@ MonoBehaviour:
     _controller: {fileID: 1088766306}
     _jointState:
       _robJoint:
-        _r1: 5.334
-        _r2: 10.367
-        _r3: 20.077
+        _r1: -16.64
+        _r2: 13.315
+        _r3: 16.541
         _r4: 0
-        _r5: 59.557
-        _r6: -84.666
+        _r5: 60.143
+        _r6: -106.64
       _extJoint:
         _e1: 9e+9
         _e2: 9e+9
@@ -1198,79 +927,79 @@ MonoBehaviour:
   _poseObserver:
     _flange:
       _value:
-        e00: 0.00000016160595
-        e01: 0.0000016511018
+        e00: 0.00000017308564
+        e01: 0.0000050715526
         e02: 1
-        e03: -0.14901131
-        e10: -0.000017156135
+        e03: 0.47700122
+        e10: 0.000016849845
         e11: -1
-        e12: 0.000001646286
-        e13: 1.0109822
+        e12: 0.000005081389
+        e13: 1.0110145
         e20: 1
-        e21: -0.000017206676
-        e22: -0.00000015418763
-        e23: 1.595996
+        e21: 0.00001683878
+        e22: -0.00000017308564
+        e23: 1.5959983
         e30: 0
         e31: 0
         e32: 0
         e33: 1
     _toolCenterPointBase:
       _value:
-        e00: 0.00000016160595
-        e01: 0.0000016511018
+        e00: 0.00000017308564
+        e01: 0.0000050715526
         e02: 1
-        e03: -0.14901131
-        e10: -0.000017156135
+        e03: 0.47700122
+        e10: 0.000016849845
         e11: -1
-        e12: 0.000001646286
-        e13: 1.0109822
+        e12: 0.000005081389
+        e13: 1.0110145
         e20: 1
-        e21: -0.000017206676
-        e22: -0.00000015418763
-        e23: 1.595996
+        e21: 0.00001683878
+        e22: -0.00000017308564
+        e23: 1.5959983
         e30: 0
         e31: 0
         e32: 0
         e33: 1
     _toolCenterPointWorld:
       _value:
-        e00: 0.00000016160595
-        e01: 0.0000016511018
+        e00: 0.00000017308564
+        e01: 0.0000050715526
         e02: 1
-        e03: -0.14901131
-        e10: -0.000017156135
+        e03: 0.47700122
+        e10: 0.000016849845
         e11: -1
-        e12: 0.000001646286
-        e13: 1.0109822
+        e12: 0.000005081389
+        e13: 1.0110145
         e20: 1
-        e21: -0.000017206676
-        e22: -0.00000015418763
-        e23: 1.595996
+        e21: 0.00001683878
+        e22: -0.00000017308564
+        e23: 1.5959983
         e30: 0
         e31: 0
         e32: 0
         e33: 1
     _toolCenterPointFrame:
       _value:
-        e00: 0.00000016160595
-        e01: 0.0000016511018
+        e00: 0.00000017308564
+        e01: 0.0000050715526
         e02: 1
-        e03: -0.14901131
-        e10: -0.000017156135
+        e03: 0.47700122
+        e10: 0.000016849845
         e11: -1
-        e12: 0.000001646286
-        e13: 1.0109822
+        e12: 0.000005081389
+        e13: 1.0110145
         e20: 1
-        e21: -0.000017206676
-        e22: -0.00000015418763
-        e23: 1.595996
+        e21: 0.00001683878
+        e22: -0.00000017308564
+        e23: 1.5959983
         e30: 0
         e31: 0
         e32: 0
         e33: 1
   _isValid:
     _value: 1
---- !u!1 &1381414566
+--- !u!1 &1438163203
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1278,83 +1007,114 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1381414568}
-  - component: {fileID: 1381414567}
+  - component: {fileID: 1438163204}
+  - component: {fileID: 1438163205}
   m_Layer: 0
-  m_Name: '3 [PTPCartesianTarget]: T:0 F:0 S:1 B:0'
+  m_Name: '1 [PTPCartesianTarget]: R: -16.64, 20.74, 23.583, 0, 45.677, -106.64
+
+    E:
+    8.999999E+09, 8.999999E+09, 8.999999E+09, 8.999999E+09, 8.999999E+09, 8.999999E+09
+
+    S:
+    0.1
+
+    B: 0
+
+    T: 0
+
+    F: 0'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1381414567
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1381414566}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9e7e5634328d37b419c1165e2976d9f2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _controller: {fileID: 1088766306}
-  _index: 3
-  _sceneCartesianTarget: {fileID: 0}
-  _cartesianTarget:
-    _object: {fileID: 0}
-    _pose:
-      e00: 1
-      e01: 0
-      e02: -0
-      e03: -0.579
-      e10: -0
-      e11: -0.25881964
-      e12: -0.96592605
-      e13: 1.366
-      e20: 0
-      e21: 0.96592605
-      e22: -0.25881964
-      e23: 1.596
-      e30: 0
-      e31: 0
-      e32: 0
-      e33: 1
-    _configuration:
-      _turn1: 0
-      _turn4: 0
-      _turn6: 0
-      _index: 0
-    _extJoint:
-      _e1: 9e+9
-      _e2: 9e+9
-      _e3: 9e+9
-      _e4: 9e+9
-      _e5: 9e+9
-      _e6: 9e+9
-  _tool: 0
-  _frame: 0
-  _speed: 1
-  _blending: 0
-  _showGizmos: 1
-  _showLabel: 1
-  _gizmosScale: 1
---- !u!4 &1381414568
+--- !u!4 &1438163204
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1381414566}
+  m_GameObject: {fileID: 1438163203}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.7933535, y: -0, z: -0, w: 0.6087613}
-  m_LocalPosition: {x: -0.579, y: 1.366, z: 1.596}
+  m_LocalRotation: {x: 0.7071065, y: 0.000000115903866, z: 0.7071071, w: 0.00000011590378}
+  m_LocalPosition: {x: 0.477, y: 0.681, z: 1.596}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 337342960}
-  m_LocalEulerAnglesHint: {x: 105, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 180, y: -90, z: 0}
+--- !u!114 &1438163205
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1438163203}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e7e5634328d37b419c1165e2976d9f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sceneCartesianTarget: {fileID: 0}
+  _instruction:
+    name: 1 PTP
+    _controller: {fileID: 1088766306}
+    _index: 1
+    _state: 1
+    _speed: 0.1
+    _blending: 0
+    _isTempJob: 0
+    _jointTarget:
+      _robJoint:
+        _r1: -16.64
+        _r2: 20.74
+        _r3: 23.583
+        _r4: 0
+        _r5: 45.677
+        _r6: -106.64
+      _extJoint:
+        _e1: 9e+9
+        _e2: 9e+9
+        _e3: 9e+9
+        _e4: 9e+9
+        _e5: 9e+9
+        _e6: 9e+9
+    _cartesianTarget:
+      _object: {fileID: 0}
+      _pose:
+        e00: -0.0000009536743
+        e01: -2.842171e-14
+        e02: 1
+        e03: 0.477
+        e10: 0.00000032782552
+        e11: -1
+        e12: 2.7000624e-13
+        e13: 0.681
+        e20: 1
+        e21: 0.00000032782555
+        e22: 0.0000008940697
+        e23: 1.596
+        e30: 0
+        e31: 0
+        e32: 0
+        e33: 1
+      _configuration:
+        _turn1: 0
+        _turn4: 0
+        _turn6: 0
+        _index: 0
+      _extJoint:
+        _e1: 9e+9
+        _e2: 9e+9
+        _e3: 9e+9
+        _e4: 9e+9
+        _e5: 9e+9
+        _e6: 9e+9
+    _tool: 0
+    _frame: 0
+  _showGizmos: 1
+  _showLabel: 1
+  _gizmosScale: 1
 --- !u!1001 &1458355863
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1423,6 +1183,238 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 81f04024acf024c4598355550c6daac7, type: 3}
+--- !u!1 &1864583805
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1864583806}
+  - component: {fileID: 1864583807}
+  m_Layer: 0
+  m_Name: '3 [PTPCartesianTarget]: R: -32.339, 24.054, 2.509, 0, 63.436, -122.339
+
+    E:
+    8.999999E+09, 8.999999E+09, 8.999999E+09, 8.999999E+09, 8.999999E+09, 8.999999E+09
+
+    S:
+    0.1
+
+    B: 0
+
+    T: 0
+
+    F: 0'
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1864583806
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1864583805}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.7071065, y: 0.000000115903866, z: 0.7071071, w: 0.00000011590378}
+  m_LocalPosition: {x: 1.013, y: 1.011, z: 1.6}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 337342960}
+  m_LocalEulerAnglesHint: {x: 180, y: -90, z: 0}
+--- !u!114 &1864583807
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1864583805}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e7e5634328d37b419c1165e2976d9f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sceneCartesianTarget: {fileID: 0}
+  _instruction:
+    name: 3 PTP
+    _controller: {fileID: 1088766306}
+    _index: 3
+    _state: 1
+    _speed: 0.1
+    _blending: 0
+    _isTempJob: 0
+    _jointTarget:
+      _robJoint:
+        _r1: -32.339
+        _r2: 24.054
+        _r3: 2.509
+        _r4: 0
+        _r5: 63.436
+        _r6: -122.339
+      _extJoint:
+        _e1: 9e+9
+        _e2: 9e+9
+        _e3: 9e+9
+        _e4: 9e+9
+        _e5: 9e+9
+        _e6: 9e+9
+    _cartesianTarget:
+      _object: {fileID: 0}
+      _pose:
+        e00: -0.0000009536743
+        e01: -2.842171e-14
+        e02: 1
+        e03: 1.013
+        e10: 0.00000032782552
+        e11: -1
+        e12: 2.7000624e-13
+        e13: 1.011
+        e20: 1
+        e21: 0.00000032782555
+        e22: 0.0000008940697
+        e23: 1.6
+        e30: 0
+        e31: 0
+        e32: 0
+        e33: 1
+      _configuration:
+        _turn1: 0
+        _turn4: 0
+        _turn6: 0
+        _index: 0
+      _extJoint:
+        _e1: 9e+9
+        _e2: 9e+9
+        _e3: 9e+9
+        _e4: 9e+9
+        _e5: 9e+9
+        _e6: 9e+9
+    _tool: 0
+    _frame: 0
+  _showGizmos: 1
+  _showLabel: 1
+  _gizmosScale: 1
+--- !u!1 &1907438839
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1907438840}
+  - component: {fileID: 1907438841}
+  m_Layer: 0
+  m_Name: '4 [PTPCartesianTarget]: R: 20.556, 11.853, -2.948, 0, 81.095, -69.444
+
+    E:
+    8.999999E+09, 8.999999E+09, 8.999999E+09, 8.999999E+09, 8.999999E+09, 8.999999E+09
+
+    S:
+    1
+
+    B: 0
+
+    T: 0
+
+    F: 0'
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1907438840
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1907438839}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.7071065, y: 0.000000115903866, z: 0.7071071, w: 0.00000011590378}
+  m_LocalPosition: {x: -0.6, y: 1.474, z: 1.6}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 337342960}
+  m_LocalEulerAnglesHint: {x: 180, y: -90, z: 0}
+--- !u!114 &1907438841
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1907438839}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e7e5634328d37b419c1165e2976d9f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sceneCartesianTarget: {fileID: 0}
+  _instruction:
+    name: 4 PTP
+    _controller: {fileID: 1088766306}
+    _index: 4
+    _state: 1
+    _speed: 1
+    _blending: 0
+    _isTempJob: 0
+    _jointTarget:
+      _robJoint:
+        _r1: 20.556
+        _r2: 11.853
+        _r3: -2.948
+        _r4: 0
+        _r5: 81.095
+        _r6: -69.444
+      _extJoint:
+        _e1: 9e+9
+        _e2: 9e+9
+        _e3: 9e+9
+        _e4: 9e+9
+        _e5: 9e+9
+        _e6: 9e+9
+    _cartesianTarget:
+      _object: {fileID: 0}
+      _pose:
+        e00: -0.0000009536743
+        e01: -2.842171e-14
+        e02: 1
+        e03: -0.6
+        e10: 0.00000032782552
+        e11: -1
+        e12: 2.7000624e-13
+        e13: 1.474
+        e20: 1
+        e21: 0.00000032782555
+        e22: 0.0000008940697
+        e23: 1.6
+        e30: 0
+        e31: 0
+        e32: 0
+        e33: 1
+      _configuration:
+        _turn1: 0
+        _turn4: 0
+        _turn6: 0
+        _index: 0
+      _extJoint:
+        _e1: 9e+9
+        _e2: 9e+9
+        _e3: 9e+9
+        _e4: 9e+9
+        _e5: 9e+9
+        _e6: 9e+9
+    _tool: 0
+    _frame: 0
+  _showGizmos: 1
+  _showLabel: 1
+  _gizmosScale: 1
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

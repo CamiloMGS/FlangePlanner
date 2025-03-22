@@ -3,29 +3,18 @@
 // file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading;
 using Cysharp.Threading.Tasks;
-using Preliy.Flange.Planner.RawInstructions;
 using UnityEngine;
-using Motion = Preliy.Flange.Planner.RawInstructions.Motion;
 
 namespace Preliy.Flange.Planner
 {
     [Serializable]
-    public abstract partial class Task : MonoBehaviour
+    public abstract class Task : MonoBehaviour
     {
         public Controller Controller => _controller;
-        public List<Instruction> Instructions => _instructions;
-        public List<Motion> Motions => _motions;
-        public float Duration => _duration;
         
-        public bool IsValid
-        {
-            get => _isValid;
-            set => _isValid = value;
-        }
+        public bool IsValid => _isValid;
         
         public bool Verbose
         {
@@ -37,149 +26,25 @@ namespace Preliy.Flange.Planner
 
         [Header("State")]
         [SerializeField]
-        private bool _isValid;
+        protected bool _isValid;
         
         [Header("References")]
         [SerializeField]
         protected Controller _controller;
-        
-        [Header("Sequence")]
-        [SerializeField]
-        [SerializeReference]
-        private List<Instruction> _instructions = new ();
 
         [Header("Settings")]
         [Tooltip("Compile by execution")]
         [SerializeField]
-        private bool _alwaysCompile;
+        protected bool _alwaysCompile;
         [SerializeField]
-        private bool _verbose;
+        protected bool _verbose;
         [SerializeField]
-        private TaskGizmosConfig _taskGizmosConfig;
+        protected TaskGizmosConfig _taskGizmosConfig;
 
-        [SerializeField]
-        private float _duration;
-        
-        [HideInInspector]
-        [SerializeField]
-        [SerializeReference]
-        private List<Motion> _motions = new ();
 
-        protected abstract void Create();
-        
-        public async UniTask Plan(CancellationToken cancellationToken)
-        {
-            if (!gameObject.activeInHierarchy) return;
+        public abstract void Validate();
+        public abstract UniTask Plan(CancellationToken cancellationToken);
 
-            try
-            {
-                Clear();
-                Create();
-                await MotionPlanner.Plan(this, cancellationToken);
-            }
-            catch (Exception exception)
-            {
-                Logger.Log(LogType.Error, exception, this);
-            }
-        }
-        
-        public async UniTask Execute(PlayerLoopTiming playerLoopTiming, CancellationToken cancellationToken)
-        {
-            if (!gameObject.activeInHierarchy) return;
-            
-            try
-            {
-                if (_alwaysCompile)
-                {
-                    await Plan(cancellationToken);
-                    await ExecuteInstructions(playerLoopTiming, cancellationToken);
-                }
-                else
-                {
-                    await ExecuteInstructions(playerLoopTiming, cancellationToken);
-                }
-            }
-            catch (Exception exception)
-            {
-                Logger.Log(LogType.Error, exception.Message, this);
-                throw;
-            }
-        }
-
-        public void Add(Instruction instruction)
-        {
-            _isValid = false;
-            _instructions.Add(instruction);
-            Refresh();
-            OnInstructionsListChanged?.Invoke();
-        }
-        
-        public void Add(IEnumerable<Instruction> instructions)
-        {
-            _isValid = false;
-            _instructions.AddRange(instructions);
-            Refresh();
-            OnInstructionsListChanged?.Invoke();
-        }
-
-        public void Clear()
-        {
-            _isValid = false;
-            _instructions.Clear();
-            _motions.Clear();
-            _duration = 0;
-            OnInstructionsListChanged?.Invoke();
-        }
-
-        public void RefreshDuration()
-        {
-            _duration = _motions.Sum(instruction => instruction.Trajectory.Duration);
-        }
-        
-        private async UniTask ExecuteInstructions(PlayerLoopTiming playerLoopTiming, CancellationToken cancellationToken)
-        {
-            if (!_isValid) throw new Exception("Task isn't valid");
-
-            foreach (var instruction in _instructions)
-            {
-                Logger.LogVerbose(LogType.Log, this, instruction, ActionState.Start);
-                await instruction.Execute(playerLoopTiming, cancellationToken);
-                Logger.LogVerbose(LogType.Log, this, instruction, ActionState.End);
-            }
-        }
-
-        private void Refresh()
-        {
-            for (var i = 0; i < _instructions.Count; i++)
-            {
-                _instructions[i].Initialize(_controller, i);
-            }
-
-            _motions = _instructions.OfType<Motion>().ToList();
-        }
-        
-#if UNITY_EDITOR
-        public void OnDrawGizmos()
-        {
-            DrawTaskGizmos(_taskGizmosConfig);
-        }
-        
-        public void DrawTaskGizmos(TaskGizmosConfig config)
-        {
-            if (!config.Enable) return;
-
-            if (Motions.Count == 0) return;
-            
-            foreach (var motion in Motions)
-            {
-                GizmosUtils.DrawMotionTarget(_controller, motion, config.ColorPoints, config.Scale, config.ShowDescription, config.ShowBlendZone);
-            }
-
-            for (var i = 1; i < Motions.Count; i++)
-            {
-                GizmosUtils.DrawSegment(_controller, Motions[i-1], Motions[i], config.ColorLines);
-            }
-        }
-#endif
+        public abstract UniTask Execute(PlayerLoopTiming playerLoopTiming, CancellationToken cancellationToken);
     }
 }

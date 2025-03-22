@@ -10,7 +10,7 @@ using Preliy.Flange.Planner.Sequence;
 
 namespace Preliy.Flange.Planner
 {
-    public abstract partial class Task
+    public abstract partial class ScriptableTask
     {
         /// <summary>
         /// Log message is console

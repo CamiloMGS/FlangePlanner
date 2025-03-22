@@ -67,16 +67,16 @@ namespace Preliy.Flange.Planner.Editor
             columnListView.columns["type"].makeCell = () => new Label();
             columnListView.columns["data"].makeCell = () => new Label();
             
-            columnListView.columns["index"].bindCell = (element, index) => ((Label)element).text = index.ToString();
-            columnListView.columns["type"].bindCell = (element, index) => 
-            {
-                ((Label)element).text = _task.Instructions[index].Name;
-            };
-            
-            columnListView.columns["type"].bindCell = (element, index) => 
-            {
-                ((Label)element).text = _task.Instructions[index].ToString();
-            };
+            // columnListView.columns["index"].bindCell = (element, index) => ((Label)element).text = index.ToString();
+            // columnListView.columns["type"].bindCell = (element, index) => 
+            // {
+            //     ((Label)element).text = _task.Instructions[index].Name;
+            // };
+            //
+            // columnListView.columns["type"].bindCell = (element, index) => 
+            // {
+            //     ((Label)element).text = _task.Instructions[index].ToString();
+            // };
             
             columnListView.selectionChanged += ColumnListViewOnSelectionChanged;
 
@@ -85,7 +85,7 @@ namespace Preliy.Flange.Planner.Editor
         
         private void OnInstructionsListChanged()
         {
-            _columnListView.itemsSource = _task.Instructions;
+            //_columnListView.itemsSource = _task.Instructions;
             _columnListView.Rebuild();
         }
         

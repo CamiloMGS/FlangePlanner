@@ -14,7 +14,7 @@ using Object = UnityEngine.Object;
 namespace Preliy.Flange.Planner.Editor
 {
     [CanEditMultipleObjects]
-    [CustomEditor(typeof(PTPCartesianTarget))]
+    //[CustomEditor(typeof(PTPCartesianTarget))]
     // ReSharper disable once InconsistentNaming
     public class InspectorPTP : UnityEditor.Editor
     {
@@ -61,15 +61,15 @@ namespace Preliy.Flange.Planner.Editor
             _buttonJump = container.Q<Button>("jump");
             _buttonJump.clicked += ButtonJumpOnClicked;
 
-            _helpBox = new HelpBox
-            {
-                text = _instruction.Exception.Value?.Message,
-                messageType = HelpBoxMessageType.Error
-            };
-            _stateContainer.Add(_helpBox);
-
-            OnExceptionChanged(_instruction.Exception.Value);
-            _instruction.Exception.OnValueChanged += OnExceptionChanged;
+            // _helpBox = new HelpBox
+            // {
+            //     text = _instruction.Exception.Value?.Message,
+            //     messageType = HelpBoxMessageType.Error
+            // };
+            // _stateContainer.Add(_helpBox);
+            //
+            // OnExceptionChanged(_instruction.Exception.Value);
+            // _instruction.Exception.OnValueChanged += OnExceptionChanged;
 
             return container;
         }
@@ -77,7 +77,7 @@ namespace Preliy.Flange.Planner.Editor
         private void OnDisable()
         {
             _buttonJump.clicked -= ButtonJumpOnClicked;
-            _instruction.Exception.OnValueChanged -= OnExceptionChanged;
+            //_instruction.Exception.OnValueChanged -= OnExceptionChanged;
         }
 
         private void SetCartesianTargetView(SceneCartesianTarget sceneCartesianTarget)

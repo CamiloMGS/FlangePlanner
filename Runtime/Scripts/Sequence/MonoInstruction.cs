@@ -12,34 +12,11 @@ namespace Preliy.Flange.Planner.Sequence
     {
         public abstract Instruction Instruction { get; }
 
-        public Controller Controller
-        {
-            get => _controller;
-            set => _controller = value;
-        }
-        
-        public int Index
-        {
-            get => _index;
-            set => _index = value;
-        }
-
-        public Property<Exception> Exception => _exception;
-
-        [SerializeField]
-        protected Controller _controller;
-        [SerializeField]
-        protected int _index;
-        [SerializeField]
-        protected Property<Exception> _exception = new ();
-
         private const string FORMAT = "{0} [{1}]: {2}";
 
-        public abstract void Initialize();
-        
-        public void OnValidate()
+        public virtual void Refresh()
         {
-            name = string.Format(FORMAT, _index, GetType().Name, GetDescription());
+            name = string.Format(FORMAT, Instruction.Index, GetType().Name, GetDescription());
         }
 
         protected abstract string GetDescription();
