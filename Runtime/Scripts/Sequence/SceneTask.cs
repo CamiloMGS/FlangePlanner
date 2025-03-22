@@ -17,11 +17,6 @@ namespace Preliy.Flange.Planner.Sequence
         [SerializeField]
         private List<MonoInstruction> _monoInstructions = new ();
         
-        private void Reset()
-        {
-            //Refresh();
-        }
-
         private void OnValidate()
         {
             Refresh();
@@ -95,9 +90,9 @@ namespace Preliy.Flange.Planner.Sequence
 
             foreach (var instruction in _monoInstructions)
             {
-                Logger.LogVerbose(LogType.Log, this, instruction.Instruction, ActionState.Start);
+                Logger.LogVerbose(LogType.Log, this, instruction.Instruction, "Start");
                 await instruction.Instruction.Execute(playerLoopTiming, cancellationToken);
-                Logger.LogVerbose(LogType.Log, this, instruction.Instruction, ActionState.End);
+                Logger.LogVerbose(LogType.Log, this, instruction.Instruction, "End");
             }
         }
     }

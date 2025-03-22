@@ -4,7 +4,6 @@
 
 using System.Threading;
 using Cysharp.Threading.Tasks;
-using Preliy.Flange.Planner.RawInstructions;
 using UnityEditor;
 using UnityEditor.UIElements;
 using UnityEngine.UIElements;
@@ -39,7 +38,7 @@ namespace Preliy.Flange.Planner.Editor
         
         private void CompileButtonClick()
         {
-            _task.Plan(new CancellationToken()).Forget();
+            _task.Plan(CancellationToken.None).Forget();
         }
     }
 }

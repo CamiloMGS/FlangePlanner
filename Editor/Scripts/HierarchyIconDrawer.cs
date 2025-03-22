@@ -41,19 +41,19 @@ namespace Preliy.Flange.Planner.Editor
             
             switch (monoInstruction.Instruction.State)
             {
-                case InstructionState.Idle:
+                case RawInstructions.InstructionState.Idle:
                     icon = EditorGUIUtility.IconContent(INSTRUCTION_STATE_ICON_IDLE);
                     break;
-                case InstructionState.Ready:
+                case RawInstructions.InstructionState.Ready:
                     icon = EditorGUIUtility.IconContent(INSTRUCTION_STATE_ICON_READY);
                     break;
-                case InstructionState.Busy:
+                case RawInstructions.InstructionState.Busy:
                     icon = EditorGUIUtility.IconContent(INSTRUCTION_STATE_ICON_BUSY);
                     break;
-                case InstructionState.Done:
+                case RawInstructions.InstructionState.Done:
                     icon = EditorGUIUtility.IconContent(INSTRUCTION_STATE_ICON_DONE);
                     break;
-                case InstructionState.Error:
+                case RawInstructions.InstructionState.Error:
                     icon = EditorGUIUtility.IconContent(INSTRUCTION_STATE_ICON_ERROR);
                     break;
                 default:

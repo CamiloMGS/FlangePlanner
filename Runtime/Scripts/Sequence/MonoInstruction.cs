@@ -8,15 +8,15 @@ using UnityEngine;
 
 namespace Preliy.Flange.Planner.Sequence
 {
-    public abstract class MonoInstruction : MonoBehaviour, IInstructionProvider
+    public abstract class MonoInstruction : MonoBehaviour
     {
         public abstract Instruction Instruction { get; }
 
-        private const string FORMAT = "{0} [{1}]: {2}";
+        private const string FORMAT = "{0} {1}";
 
         public virtual void Refresh()
         {
-            name = string.Format(FORMAT, Instruction.Index, GetType().Name, GetDescription());
+            name = string.Format(FORMAT, Instruction.Index, GetType().Name);
         }
 
         protected abstract string GetDescription();

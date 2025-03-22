@@ -101,9 +101,9 @@ namespace Preliy.Flange.Planner
 
             foreach (var instruction in _instructions)
             {
-                Logger.LogVerbose(LogType.Log, this, instruction, ActionState.Start);
+                Logger.LogVerbose(LogType.Log, this, instruction, "Start");
                 await instruction.Execute(playerLoopTiming, cancellationToken);
-                Logger.LogVerbose(LogType.Log, this, instruction, ActionState.End);
+                Logger.LogVerbose(LogType.Log, this, instruction, "End");
             }
         }
         
