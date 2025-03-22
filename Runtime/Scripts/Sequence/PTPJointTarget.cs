@@ -48,11 +48,7 @@ namespace Preliy.Flange.Planner.Sequence
         private float _gizmosScale = 1f;
 
         private JointMotion _jointMotion;
-
-        public override void Initialize()
-        {
-            throw new System.NotImplementedException();
-        }
+        
         protected override string GetDescription()
         {
             if (_sceneJointTarget != null)

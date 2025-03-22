@@ -30,11 +30,11 @@ namespace Preliy.Flange.Planner.RawInstructions
         }
 
         [SerializeField]
-        private CartesianTarget _cartesianTarget;
+        private CartesianTarget _cartesianTarget = CartesianTarget.Default;
         [SerializeField]
-        private int _tool;
+        private int _tool = -1;
         [SerializeField]
-        private int _frame;
+        private int _frame = -1;
 
         public override void Plan()
         {

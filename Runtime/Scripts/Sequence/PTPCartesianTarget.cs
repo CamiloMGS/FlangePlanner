@@ -15,39 +15,19 @@ namespace Preliy.Flange.Planner.Sequence
     // ReSharper disable once InconsistentNaming
     public class PTPCartesianTarget : MonoInstruction
     {
-        public override Instruction Instruction => _jointMotion;
+        public override Instruction Instruction => _instruction;
         
         public SceneCartesianTarget SceneCartesianTarget
         {
             get => _sceneCartesianTarget;
             set => _sceneCartesianTarget = value;
         }
-        
-        public CartesianTarget CartesianTarget
-        {
-            get => _cartesianTarget;
-            set => _cartesianTarget = value;
-        }
-        
-        public int Frame
-        {
-            get => _frame;
-            set => _frame = value;
-        }
 
         [Header("Instruction Parameters")]
         [SerializeField]
         private SceneCartesianTarget _sceneCartesianTarget;
         [SerializeField]
-        private CartesianTarget _cartesianTarget = CartesianTarget.Default;
-        [SerializeField]
-        private int _tool;
-        [SerializeField]
-        private int _frame;
-        [SerializeField]
-        private float _speed;
-        [SerializeField]
-        private float _blending;
+        private RawInstructions.PTPCartesianTarget _instruction = new ();
 
         [Header("Gizmos")]
         [SerializeField]
@@ -58,44 +38,56 @@ namespace Preliy.Flange.Planner.Sequence
         [SerializeField]
         private float _gizmosScale = 1f;
 
-        [SerializeField]
-        private JointMotion _jointMotion = new RawInstructions.PTPCartesianTarget();
-
-        public override void Initialize()
+        private void Reset()
         {
-            _exception.Value = null;
-            _cartesianTarget.Pose = transform.GetMatrix();
-            _jointMotion = new RawInstructions.PTPCartesianTarget
+            _instruction = new RawInstructions.PTPCartesianTarget();
+            _instruction.Initialize(transform.parent.GetComponent<Task>().Controller, transform.GetSiblingIndex());
+        }
+
+        private void OnValidate()
+        {
+            Refresh();
+        }
+
+        public override void Refresh()
+        {
+            //_instruction ??= new RawInstructions.PTPCartesianTarget();
+            if (_sceneCartesianTarget != null)
             {
-                CartesianTarget = _sceneCartesianTarget != null ? _sceneCartesianTarget.Target : _cartesianTarget,
-                Tool = _tool,
-                Frame = _frame,
-                Speed = _speed,
-                Blending = _blending
-            };
+                _instruction.CartesianTarget = _sceneCartesianTarget.Target;
+            }
+            else
+            {
+                var target = _instruction.CartesianTarget; 
+                target.Pose = transform.GetMatrix();
+                _instruction.Controller.ConvertFrame(target, (int)CoordinateSystem.World, _instruction.Frame);
+                _instruction.CartesianTarget = target;
+            }
+            
+            base.Refresh();
         }
         
         protected override string GetDescription()
         {
             if (_sceneCartesianTarget != null)
             {
-                return $"REF:{_sceneCartesianTarget.name} T:{_tool} F:{_frame} S:{_speed} B:{_blending}";
+                return $"REF:{_sceneCartesianTarget.name} {_instruction.ToDescription()}";
             }
-            return $"T:{_tool} F:{_frame} S:{_speed} B:{_blending}";
+            return $"{_instruction.ToDescription()}";
         }
 
         public void JumpToTarget()
         {
             try
             {
-                Initialize();
-                _jointMotion.Initialize(_controller, _index);
-                _jointMotion.Plan();
-                _jointMotion.JumpToTarget();
+                Refresh();
+                //_instruction.Initialize(_controller, _index);
+                _instruction.Plan();
+                _instruction.JumpToTarget();
             }
             catch (Exception exception)
             {
-                _exception.Value = exception;
+                //_exception.Value = exception;
                 Flange.Logger.Log(LogType.Error, $"{name}: {exception}", this);
 #if UNITY_EDITOR
                 if (!Application.isPlaying) EditorUtility.SetDirty(this);

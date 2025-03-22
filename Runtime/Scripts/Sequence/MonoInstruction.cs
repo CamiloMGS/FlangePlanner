@@ -8,38 +8,15 @@ using UnityEngine;
 
 namespace Preliy.Flange.Planner.Sequence
 {
-    public abstract class MonoInstruction : MonoBehaviour, IInstructionProvider
+    public abstract class MonoInstruction : MonoBehaviour
     {
         public abstract Instruction Instruction { get; }
 
-        public Controller Controller
+        private const string FORMAT = "{0} {1}";
+
+        public virtual void Refresh()
         {
-            get => _controller;
-            set => _controller = value;
-        }
-        
-        public int Index
-        {
-            get => _index;
-            set => _index = value;
-        }
-
-        public Property<Exception> Exception => _exception;
-
-        [SerializeField]
-        protected Controller _controller;
-        [SerializeField]
-        protected int _index;
-        [SerializeField]
-        protected Property<Exception> _exception = new ();
-
-        private const string FORMAT = "{0} [{1}]: {2}";
-
-        public abstract void Initialize();
-        
-        public void OnValidate()
-        {
-            name = string.Format(FORMAT, _index, GetType().Name, GetDescription());
+            name = string.Format(FORMAT, Instruction.Index, GetType().Name);
         }
 
         protected abstract string GetDescription();

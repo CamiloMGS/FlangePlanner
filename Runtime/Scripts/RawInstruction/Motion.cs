@@ -33,7 +33,7 @@ namespace Preliy.Flange.Planner.RawInstructions
         }
 
         [SerializeField]
-        protected float _speed;
+        protected float _speed = 1;
         [SerializeField]
         protected float _blending;
         [SerializeField]

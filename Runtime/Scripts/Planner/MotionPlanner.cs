@@ -4,6 +4,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using Cysharp.Threading.Tasks;
 using Preliy.Flange.Planner.RawInstructions;
@@ -13,21 +14,36 @@ namespace Preliy.Flange.Planner
 {
     public static class MotionPlanner
     {
-        public static async UniTask Plan(Task task, CancellationToken cancellationToken = default)
+        public static async UniTask Plan(Controller controller, List<Instruction> instructions, CancellationToken cancellationToken = default)
         {
-            task.IsValid = false;
             cancellationToken.ThrowIfCancellationRequested();
-
             await UniTask.SwitchToThreadPool();
-
             cancellationToken.ThrowIfCancellationRequested();
 
             try
             {
-                Plan(task.Instructions);
-                InitializeMotions(task.Motions);
-                CreateTrajectory(task.Controller, task.Motions);
-                BlendTrajectory(task.Controller, task.Motions);
+                var motions = instructions.OfType<Motion>().ToList();
+                
+                if (instructions == null)
+                {
+                    throw new NullReferenceException("Instruction list is null");
+                }
+            
+                if (instructions.Count == 0)
+                {
+                    throw new Exception("Instruction list is empty");
+                }
+
+
+                for (var i = 0; i < instructions.Count; i++)
+                {
+                    instructions[i].Initialize(controller, i);
+                    instructions[i].Plan();
+                }
+                
+                InitializeMotions(motions);
+                CreateTrajectory(controller, motions);
+                BlendTrajectory(controller, motions);
             }
             finally
             {
@@ -35,7 +51,6 @@ namespace Preliy.Flange.Planner
             }
 
             cancellationToken.ThrowIfCancellationRequested();
-            task.IsValid = true;
         }
         
         private static void BlendTrajectory(Controller controller, IReadOnlyList<Motion> motions)
@@ -67,20 +82,7 @@ namespace Preliy.Flange.Planner
 
         private static void Plan(IList<Instruction> instructions)
         {
-            if (instructions == null)
-            {
-                throw new NullReferenceException("Instruction list is null");
-            }
             
-            if (instructions.Count == 0)
-            {
-                throw new Exception("Instruction list is empty");
-            }
-
-            foreach (var instruction in instructions)
-            {
-                instruction.Plan();
-            }
         }
         
         private static void InitializeMotions(IReadOnlyList<Motion> motions)

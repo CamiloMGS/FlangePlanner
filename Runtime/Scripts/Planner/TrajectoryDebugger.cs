@@ -21,10 +21,10 @@ namespace Preliy.Flange.Planner
             if (!_config.Enable) return;
             if (_task == null) return;
 
-            foreach (var motion in _task.Motions)
-            {
-                motion.Trajectory?.DrawGizmos(_config);
-            }
+            // foreach (var motion in _task.Motions)
+            // {
+            //     motion.Trajectory?.DrawGizmos(_config);
+            // }
 #endif
         }
     }
