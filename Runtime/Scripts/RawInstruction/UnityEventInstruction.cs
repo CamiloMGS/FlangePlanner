@@ -29,12 +29,10 @@ namespace Preliy.Flange.Planner.RawInstructions
         [SerializeField]
         private T _value;
         
-        public override async UniTask Execute(PlayerLoopTiming playerLoopTiming, CancellationToken cancellationToken)
+        protected override async UniTask LocalExecute(PlayerLoopTiming playerLoopTiming, CancellationToken cancellationToken)
         {
-            _state = InstructionState.Busy;
             _unityEvent?.Invoke(_value);
             await UniTask.Yield(playerLoopTiming);
-            _state = InstructionState.Done;
         }
         
         public override string ToString()

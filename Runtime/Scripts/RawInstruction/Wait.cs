@@ -20,11 +20,9 @@ namespace Preliy.Flange.Planner.RawInstructions
         [SerializeField]
         private int _time;
 
-        public override async UniTask Execute(PlayerLoopTiming playerLoopTiming, CancellationToken cancellationToken)
+        protected override async UniTask LocalExecute(PlayerLoopTiming playerLoopTiming, CancellationToken cancellationToken)
         {
-            _state = InstructionState.Busy;
             await UniTask.Delay(_time, DelayType.Realtime, cancellationToken: cancellationToken);
-            _state = InstructionState.Done;
         }
         
         public override string ToString()

@@ -41,20 +41,9 @@ namespace Preliy.Flange.Planner.RawInstructions
 
         protected Trajectory _trajectory;
 
-        public override async UniTask Execute(PlayerLoopTiming playerLoopTiming, CancellationToken cancellationToken)
+        protected override async UniTask LocalExecute(PlayerLoopTiming playerLoopTiming, CancellationToken cancellationToken)
         {
-            try
-            {
-                if (_controller == null) throw new Exception("Controller is null");
-                
-                _state = InstructionState.Busy;
-                await ExecuteTrajectory(playerLoopTiming, cancellationToken);
-                _state = InstructionState.Done;
-            }
-            catch (Exception e) when (e is not OperationCanceledException)
-            {
-                throw;
-            }
+            await ExecuteTrajectory(playerLoopTiming, cancellationToken);
         }
         
         public abstract void CreateTrajectory(JointTarget initJointState);

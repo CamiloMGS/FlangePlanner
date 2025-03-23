@@ -14,13 +14,17 @@ namespace Preliy.Flange.Planner.RawInstructions
     {
         public string Name => name;
         public int Index => _index;
-        public InstructionState State => _state;
+        public InstructionState State
+        {
+            get => _state;
+            set => _state = value;
+        }
         public Controller Controller => _controller;
 
         [SerializeField]
         // ReSharper disable once InconsistentNaming
         // Need for unity Array Element Name
-        private string name;
+        protected string name;
         [SerializeField]
         protected Controller _controller;
         [SerializeField]
@@ -40,13 +44,47 @@ namespace Preliy.Flange.Planner.RawInstructions
 
         public virtual void Plan()
         {
-            if (_state != InstructionState.Idle) throw new Exception($"{name}: State is not Idle");
+            try
+            {
+                if (_state != InstructionState.Idle) throw new Exception($"{name}: State is not Idle");
+                if (_controller == null) throw new Exception("Controller is null");
+                LocalPlan();
+                _state = InstructionState.Ready;
+            }
+            catch (Exception)
+            {
+                _state = InstructionState.Error;
+                throw;
+            }
         }
 
-        public abstract UniTask Execute(PlayerLoopTiming playerLoopTiming, CancellationToken cancellationToken);
+        public async UniTask Execute(PlayerLoopTiming playerLoopTiming, CancellationToken cancellationToken)
+        {
+            try
+            {
+                if (_state != InstructionState.Ready) throw new Exception($"{name}: State is not Ready");
+                if (_controller == null) throw new Exception("Controller is null");
+                
+                _state = InstructionState.Busy;
+                await LocalExecute(playerLoopTiming, cancellationToken);
+                _state = InstructionState.Done;
+            }
+            catch (Exception e) when (e is not OperationCanceledException)
+            {
+                _state = InstructionState.Error;
+                throw;
+            }
+        }
 
         public abstract override string ToString();
         public abstract string ToDescription();
+
+        protected virtual void LocalPlan()
+        {
+            
+        }
+        
+        protected abstract UniTask LocalExecute(PlayerLoopTiming playerLoopTiming, CancellationToken cancellationToken);
     }
 }
 

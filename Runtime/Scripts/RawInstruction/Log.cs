@@ -28,12 +28,10 @@ namespace Preliy.Flange.Planner.RawInstructions
         private string _message;
         [SerializeField]
         private LogType _logType;
-
-        public override async UniTask Execute(PlayerLoopTiming playerLoopTiming, CancellationToken cancellationToken)
+        
+        protected override async UniTask LocalExecute(PlayerLoopTiming playerLoopTiming, CancellationToken cancellationToken)
         {
-            _state = InstructionState.Busy;
             await UniTask.Yield(playerLoopTiming);
-            _state = InstructionState.Done;
         }
         
         public override string ToString()

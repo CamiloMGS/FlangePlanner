@@ -21,7 +21,7 @@ namespace Preliy.Flange.Planner.RawInstructions
         [SerializeField]
         private int _toolIndex;
 
-        public override async UniTask Execute(PlayerLoopTiming playerLoopTiming, CancellationToken cancellationToken)
+        protected override async UniTask LocalExecute(PlayerLoopTiming playerLoopTiming, CancellationToken cancellationToken)
         {
             _controller.Tool.Value = _toolIndex;
             await UniTask.Yield(PlayerLoopTiming.FixedUpdate);

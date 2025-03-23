@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using Cysharp.Threading.Tasks;
+using Preliy.Flange.Planner.RawInstructions;
 using UnityEngine;
 
 namespace Preliy.Flange.Planner.Sequence
@@ -16,11 +17,21 @@ namespace Preliy.Flange.Planner.Sequence
     {
         [SerializeField]
         private List<MonoInstruction> _monoInstructions = new ();
-        
-        private void OnValidate()
+
+        private void OnEnable()
         {
-            Refresh();
+            InvokeRepeating(nameof(UpdateHierarchy), 1.0F, 0.5f);
         }
+        
+        private void OnDisable()
+        {
+            CancelInvoke(nameof(UpdateHierarchy));
+        }
+
+        // private void OnValidate()
+        // {
+        //     Refresh();
+        // }
         
         public void Refresh()
         {
@@ -50,7 +61,7 @@ namespace Preliy.Flange.Planner.Sequence
             try
             {
                 _isValid = false;
-                Refresh();
+                //Refresh();
                 var instructions = _monoInstructions.Select(monoInstruction => monoInstruction.Instruction).ToList();
                 await MotionPlanner.Plan(_controller, instructions, cancellationToken);
                 _isValid = true;
@@ -87,13 +98,25 @@ namespace Preliy.Flange.Planner.Sequence
         private async UniTask ExecuteInstructions(PlayerLoopTiming playerLoopTiming, CancellationToken cancellationToken)
         {
             if (!_isValid) throw new Exception("Task isn't valid");
-
+            
+            foreach (var instruction in _monoInstructions.Where(instruction => instruction.Instruction.State == InstructionState.Done))
+            {
+                instruction.Instruction.State = InstructionState.Ready;
+            }
+            
             foreach (var instruction in _monoInstructions)
             {
                 Logger.LogVerbose(LogType.Log, this, instruction.Instruction, "Start");
                 await instruction.Instruction.Execute(playerLoopTiming, cancellationToken);
                 Logger.LogVerbose(LogType.Log, this, instruction.Instruction, "End");
             }
+        }
+       
+        private void UpdateHierarchy()
+        {
+#if UNITY_EDITOR
+            UnityEditor.EditorApplication.RepaintHierarchyWindow();
+#endif
         }
     }
 }

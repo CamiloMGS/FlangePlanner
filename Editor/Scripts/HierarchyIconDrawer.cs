@@ -13,18 +13,12 @@ namespace Preliy.Flange.Planner.Editor
     [InitializeOnLoad]
     public static class HierarchyIconDrawer
     {
-        private const string INSTRUCTION_STATE_ICON_IDLE = "sv_icon_dot0_pix16_gizmo";
-        private const string INSTRUCTION_STATE_ICON_READY = "sv_icon_dot1_pix16_gizmo";
-        private const string INSTRUCTION_STATE_ICON_BUSY = "sv_icon_dot4_pix16_gizmo";
-        private const string INSTRUCTION_STATE_ICON_DONE = "sv_icon_dot3_pix16_gizmo";
-        private const string INSTRUCTION_STATE_ICON_ERROR = "redLight";
-
         static HierarchyIconDrawer()
         {
             EditorApplication.hierarchyWindowItemOnGUI += HierarchyWindowItemOnGUI;
-            
+            EditorApplication.RepaintHierarchyWindow();
         }
-        
+
         private static void HierarchyWindowItemOnGUI(int instanceId, Rect selectionRect)
         {
             if (EditorUtility.InstanceIDToObject(instanceId) is not GameObject gameObject) return;
@@ -37,31 +31,32 @@ namespace Preliy.Flange.Planner.Editor
 
         private static void DrawInstructionStateIcon(MonoInstruction monoInstruction, Rect selectionRect)
         {
-            GUIContent icon;
+            Color color;
             
             switch (monoInstruction.Instruction.State)
             {
-                case RawInstructions.InstructionState.Idle:
-                    icon = EditorGUIUtility.IconContent(INSTRUCTION_STATE_ICON_IDLE);
+                case InstructionState.Idle:
+                    color = new Color(0.2f, 0.2f, 0.2f);
+                    color = Color.gray;
                     break;
-                case RawInstructions.InstructionState.Ready:
-                    icon = EditorGUIUtility.IconContent(INSTRUCTION_STATE_ICON_READY);
+                case InstructionState.Ready:
+                    color = Color.gray;
                     break;
-                case RawInstructions.InstructionState.Busy:
-                    icon = EditorGUIUtility.IconContent(INSTRUCTION_STATE_ICON_BUSY);
+                case InstructionState.Busy:
+                    color = Color.yellow;
                     break;
-                case RawInstructions.InstructionState.Done:
-                    icon = EditorGUIUtility.IconContent(INSTRUCTION_STATE_ICON_DONE);
+                case InstructionState.Done:
+                    color = Color.green;
                     break;
-                case RawInstructions.InstructionState.Error:
-                    icon = EditorGUIUtility.IconContent(INSTRUCTION_STATE_ICON_ERROR);
+                case InstructionState.Error:
+                    color = Color.red;
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
             }
-
-            var iconRect = new Rect(selectionRect.xMax - 20, selectionRect.y, 16, 16);
-            GUI.Label(iconRect, new GUIContent(icon));
+            
+            var iconRect = new Rect(selectionRect.xMax, selectionRect.y, 4, 14);
+            EditorGUI.DrawRect(iconRect, color);
         }
     }
 }

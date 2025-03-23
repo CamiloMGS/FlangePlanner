@@ -39,6 +39,7 @@ namespace Preliy.Flange.Planner.Editor
         private void CompileButtonClick()
         {
             _task.Plan(CancellationToken.None).Forget();
+            EditorUtility.SetDirty(_task);
         }
     }
 }
