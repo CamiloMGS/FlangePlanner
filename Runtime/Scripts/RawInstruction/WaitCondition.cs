@@ -19,11 +19,9 @@ namespace Preliy.Flange.Planner.RawInstructions
 
         private Func<bool> _condition;
         
-        public override async UniTask Execute(PlayerLoopTiming playerLoopTiming, CancellationToken cancellationToken)
+        protected override async UniTask LocalExecute(PlayerLoopTiming playerLoopTiming, CancellationToken cancellationToken)
         {
-            _state = InstructionState.Busy;
             await UniTask.WaitUntil(_condition, cancellationToken: cancellationToken);
-            _state = InstructionState.Done;
         }
         
         public override string ToString()

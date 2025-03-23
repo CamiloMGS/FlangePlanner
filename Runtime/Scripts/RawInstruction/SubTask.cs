@@ -21,26 +21,15 @@ namespace Preliy.Flange.Planner.RawInstructions
         [SerializeField]
         private Task _task;
 
-        public override void Plan()
+        protected override void LocalPlan()
         {
-            try
-            {
-                if (_task == null) throw new Exception("SubTask is null!");
-                if (_controller != _task.Controller) throw new Exception("SubTask Controller is not equal to parent Task Controller!");
-                _state = InstructionState.Ready;
-            }
-            catch (Exception)
-            {
-                _state = InstructionState.Error;
-                throw;
-            }
+            if (_task == null) throw new Exception("SubTask is null!");
+            if (_controller != _task.Controller) throw new Exception("SubTask Controller is not equal to parent Task Controller!");
         }
         
-        public override async UniTask Execute(PlayerLoopTiming playerLoopTiming, CancellationToken cancellationToken)
+        protected override async UniTask LocalExecute(PlayerLoopTiming playerLoopTiming, CancellationToken cancellationToken)
         {
-            _state = InstructionState.Busy;
             await _task.Execute(playerLoopTiming, cancellationToken);
-            _state = InstructionState.Done;
         }
         
         public override string ToString()

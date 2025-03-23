@@ -25,25 +25,13 @@ namespace Preliy.Flange.Planner.RawInstructions
         private CartesianTarget _wayPoint;
 
         
-        public override void Plan()
+        protected override void LocalPlan()
         {
-            try
-            {
-                base.Plan();
-                
-                _tool = _controller.GetValidToolIndex(_tool); 
-                _target = _controller.FrameToWorld(_cartesianTarget.Pose, _frame, _cartesianTarget.ExtJoint);
-                _targetWayPoint = _controller.FrameToWorld(_wayPoint.Pose, _frame, _wayPoint.ExtJoint);
-                var solution = _controller.Solver.ComputeInverse(_cartesianTarget, _tool, _frame);
-                if (!solution.IsValid) throw solution.Exception;
-                
-                _state = InstructionState.Ready;
-            }
-            catch (Exception)
-            {
-                _state = InstructionState.Error;
-                throw;
-            }
+            _tool = _controller.GetValidToolIndex(_tool); 
+            _target = _controller.FrameToWorld(_cartesianTarget.Pose, _frame, _cartesianTarget.ExtJoint);
+            _targetWayPoint = _controller.FrameToWorld(_wayPoint.Pose, _frame, _wayPoint.ExtJoint);
+            var solution = _controller.Solver.ComputeInverse(_cartesianTarget, _tool, _frame);
+            if (!solution.IsValid) throw solution.Exception;
         }
 
         public override void CreateTrajectory(JointTarget initJointState)
