@@ -10,7 +10,7 @@
             <ui:IntegerField label="Frame" name="frame" binding-path="_frame" />
             <ui:IntegerField label="Tool" name="tool" binding-path="_tool" />
         </ui:VisualElement>
-        <ui:FloatField label="Speed" name="speed" binding-path="_speed" />
+        <ui:FloatField label="Speed" name="speed" binding-path="_speed" value="0" />
         <ui:FloatField label="Blending" name="blending" binding-path="_blending" />
     </ui:VisualElement>
     <ui:VisualElement name="gizmosContainer" style="flex-grow: 1;">
