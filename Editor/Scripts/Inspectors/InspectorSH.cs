@@ -26,8 +26,8 @@ public class InspectorPTP : Editor
     private void OnEnable()
     {
         _sequenceHandler = target as SequenceHandler;
-        _previousInstructionCount = _sequenceHandler.RawInstructions.Count;
         CleanAndGetAvailableInstructions();
+        _previousInstructionCount = _sequenceHandler.RawInstructions.Count;
         //This event is trigger from the PropertyDrawerSH script
         SequenceHandler.OnInstructionChanged += OnInstructionChanged;
     }
@@ -82,7 +82,7 @@ public class InspectorPTP : Editor
                 _sequenceHandler.RawInstructions.RemoveAt(i);
                 _sequenceHandler.TryToRefresh();
             }
-            else
+            else if (instruction.instructionType != SequenceHandler.InstructionType.None)
             {
                 _instructionDictionary.Add(instruction.gameObject, instruction.monoInstruction);
             }
@@ -92,9 +92,13 @@ public class InspectorPTP : Editor
     private void OnRawInstructionsChanged(SerializedPropertyChangeEvent evt)
     {
         int currentCount = _sequenceHandler.RawInstructions.Count;
-
+        if (currentCount == 0)
+        {
+            RemoveAll();
+            return;
+        }
         // New Item have been added to the inspector's list
-        if (_sequenceHandler.RawInstructions.Count > _previousInstructionCount)
+        if (currentCount > _previousInstructionCount)
         {
             var newInstruction = _sequenceHandler.RawInstructions.Last();
 
@@ -113,6 +117,7 @@ public class InspectorPTP : Editor
             _sequenceHandler.TryToRefresh();
             _previousInstructionCount = currentCount;
         }
+
     }
     public void AddNewInstruction(int index, SequenceHandler.InstructionType instructionType)
     {
@@ -187,4 +192,15 @@ public class InspectorPTP : Editor
             DestroyImmediate(objectToRemove);
         }
     }
+
+    public void RemoveAll()
+    {
+        for (int i = _sequenceHandler.transform.childCount - 1; i >= 0; i--)
+        {
+            DestroyImmediate(_sequenceHandler.transform.GetChild(i).gameObject);
+        }
+        _instructionDictionary.Clear();
+        _sequenceHandler.TryToRefresh();
+    }
+
 }
