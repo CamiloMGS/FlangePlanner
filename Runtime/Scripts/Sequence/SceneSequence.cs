@@ -19,10 +19,10 @@ namespace Preliy.Flange.Planner.Sequence
                 Add(monoInstruction.Instruction);
             }
         }
-        
+
         [SerializeField]
         [SerializeReference]
-        private List<MonoInstruction> _monoInstructions = new ();
+        private List<MonoInstruction> _monoInstructions = new();
         private void Reset()
         {
             Refresh();
@@ -37,7 +37,7 @@ namespace Preliy.Flange.Planner.Sequence
         {
             _monoInstructions.Clear();
             _monoInstructions = GetComponentsInChildren<MonoInstruction>().ToList();
-            
+
             for (var i = 0; i < _monoInstructions.Count; i++)
             {
                 _monoInstructions[i].Controller = _controller;
@@ -49,6 +49,11 @@ namespace Preliy.Flange.Planner.Sequence
         public void OnTransformChildrenChanged()
         {
             Refresh();
+        }
+
+        public void AddMonoInstruction(MonoInstruction monoInstruction)
+        {
+            _monoInstructions.Add(monoInstruction);
         }
     }
 }

@@ -73,7 +73,7 @@ namespace Preliy.Flange.Planner.Editor
 
             return container;
         }
-        
+
         private void OnDisable()
         {
             _buttonJump.clicked -= ButtonJumpOnClicked;
@@ -97,18 +97,18 @@ namespace Preliy.Flange.Planner.Editor
                 _cartesianExtJoints.SetDisplay(false);
             }
         }
-        
+
         private void CartesianTargetRefChanged(ChangeEvent<Object> evt)
         {
             var cartesianTargetRef = (SceneCartesianTarget)evt.newValue;
             SetCartesianTargetView(cartesianTargetRef);
         }
-        
+
         private void ButtonJumpOnClicked()
         {
             _instruction.JumpToTarget();
         }
-        
+
         private void OnExceptionChanged(Exception exception)
         {
             if (exception == null)
