@@ -26,6 +26,7 @@ public class InspectorPTP : Editor
     private void OnEnable()
     {
         _sequenceHandler = target as SequenceHandler;
+        //GetInstructions();
         CleanAndGetAvailableInstructions();
         _previousInstructionCount = _sequenceHandler.RawInstructions.Count;
         //This event is trigger from the PropertyDrawerSH script
@@ -50,6 +51,7 @@ public class InspectorPTP : Editor
     }
     private void OnInstructionChanged(object sender, SequenceHandler.OnInstructionChangedEventArgs e)
     {
+        //TODO: when switching to another instruction different from none. Delete the previous Mono Instruction and keep the same GameObject.
         if (e.NewValue != SequenceHandler.InstructionType.None)
         {
             AddNewInstruction(e.InstructionIndex, e.NewValue);
@@ -66,28 +68,85 @@ public class InspectorPTP : Editor
         Debug.Log("Hola...");
     }
 
+
     /// <summary>
-    /// Iterates backwards through the raw instructions to remove any invalid item.
-    /// This is used when the GameObject containing a MonoInstruction has been deleted.
-    /// It also generates a dictionary of valid instructions to detect when an instruction
-    /// is removed from the list in the inspector.
+    /// Iterates through the instruction list to validate and clean up invalid items.
+    /// The following items are removed:
+    /// 
+    /// - A GameObject if dosen't have MonoInstruction component.
+    /// - An instruction (different that 'None') if its associated GameObject is missing.
+    /// - A child GameObject of the SequenceHandler that:
+    ///     • Has a MonoInstruction component but is not registered in the Raw Instructions.
+    /// 
+    /// This is used to maintain consistency between the internal state and the inspector when objects are removed
+    /// either manually or programmatically.
     /// </summary>
+
     private void CleanAndGetAvailableInstructions()
     {
+        bool shouldRefresh = false;
+
+        // Process RawInstructions in reverse order to safely remove items.
         for (int i = _sequenceHandler.RawInstructions.Count - 1; i >= 0; i--)
         {
             var instruction = _sequenceHandler.RawInstructions[i];
-            if (instruction.instructionType != SequenceHandler.InstructionType.None && instruction.gameObject == null)
+
+            // If a GameObject exists but is missing the MonoInstruction component...
+            if (instruction.gameObject != null &&
+                !instruction.gameObject.TryGetComponent<MonoInstruction>(out var monoInstruction))
             {
-                _sequenceHandler.RawInstructions.RemoveAt(i);
-                _sequenceHandler.TryToRefresh();
+                Debug.LogWarning($"MonoInstruction missing in instruction at index {i}", _sequenceHandler.gameObject);
+                DestroyImmediate(instruction.gameObject);
+                shouldRefresh = true;
             }
-            else if (instruction.instructionType != SequenceHandler.InstructionType.None)
+
+            // Remove instructions that are marked (non-None) but have no associated GameObject.
+            if (instruction.instructionType != SequenceHandler.InstructionType.None)
             {
-                _instructionDictionary.Add(instruction.gameObject, instruction.monoInstruction);
+                if (instruction.gameObject == null)
+                {
+                    _sequenceHandler.RawInstructions.RemoveAt(i);
+                    Debug.LogWarning(
+                        $"Instruction at index {i} was removed because its associated GameObject is missing.",
+                        _sequenceHandler.gameObject);
+                    shouldRefresh = true;
+                    continue;
+                }
+                else
+                {
+                    // Register valid instructions.
+                    _instructionDictionary.Add(instruction.gameObject, instruction.monoInstruction);
+                }
             }
         }
+
+        // Refresh once if any changes were made.
+        if (shouldRefresh)
+        {
+            _sequenceHandler.TryToRefresh();
+        }
+
+        // Validate all children of the SequenceHandler.
+        for (int i = _sequenceHandler.transform.childCount - 1; i >= 0; i--)
+        {
+            GameObject child = _sequenceHandler.transform.GetChild(i).gameObject;
+            if (_instructionDictionary.ContainsKey(child))
+            {
+                continue;
+            }
+
+            //if (child.TryGetComponent<MonoInstruction>(out var childMonoInstruction))
+            
+                Debug.LogWarning(
+                                $"Child '{child.name}' does not match any registered instruction. " +
+                                "Only use 'Sequence Handler' to add new instructions.",
+                                _sequenceHandler.gameObject);
+
+            DestroyImmediate(child);
+        }
+
     }
+
 
     private void OnRawInstructionsChanged(SerializedPropertyChangeEvent evt)
     {

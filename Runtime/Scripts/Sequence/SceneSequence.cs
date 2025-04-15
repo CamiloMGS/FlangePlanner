@@ -48,6 +48,7 @@ namespace Preliy.Flange.Planner.Sequence
 
         public void OnTransformChildrenChanged()
         {
+            Debug.Log("Hello");
             Refresh();
         }
 

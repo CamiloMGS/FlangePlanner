@@ -13,6 +13,7 @@ namespace Preliy.Flange.Planner
     public class SequenceHandler : MonoBehaviour
     {
         public List<RawInstruction> RawInstructions = new List<RawInstruction>();
+        public Dictionary<GameObject, MonoInstruction> InstructionDictionary = new Dictionary<GameObject, MonoInstruction>();
 
         [Serializable]
         public class RawInstruction
